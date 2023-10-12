@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegacion"
+    app:startDestination="@id/homeFrag">
+
+    <fragment
+        android:id="@+id/dashboardFrag"
+        android:name="mx.mr.platopatodos.ui.dashboard.DashboardFrag"
+        android:label="fragment_reporte"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/homeFrag"
+        android:name="mx.mr.platopatodos.ui.home.HomeFrag"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFrag_to_assistActivity"
+            app:destination="@id/assistActivity" />
+        <action
+            android:id="@+id/action_homeFrag_to_regActivity"
+            app:destination="@id/regActivity" />
+        <action
+            android:id="@+id/action_homeFrag_to_menuActivity"
+            app:destination="@id/menuActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/incidentFrag"
+        android:name="mx.mr.platopatodos.ui.incident.IncidentFrag"
+        android:label="fragment_incident"
+        tools:layout="@layout/fragment_incident" />
+    <activity
+        android:id="@+id/assistActivity"
+        android:name="mx.mr.platopatodos.ui.assist.AssistActivity"
+        android:label="activity_assist"
+        tools:layout="@layout/activity_assist" />
+    <activity
+        android:id="@+id/regActivity"
+        android:name="mx.mr.platopatodos.ui.reg.RegActivity"
+        android:label="activity_reg"
+        tools:layout="@layout/activity_reg" />
+    <activity
+        android:id="@+id/menuActivity"
+        android:name="mx.mr.platopatodos.ui.menu.MenuActivity"
+        android:label="activity_menu"
+        tools:layout="@layout/activity_menu" />
+</navigation>
