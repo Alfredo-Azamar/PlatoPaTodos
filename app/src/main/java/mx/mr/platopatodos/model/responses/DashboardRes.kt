@@ -5,5 +5,5 @@ data class DashboardRes(
 )
 
 data class TableItemDB(
-    var Nombre: String
+    var Valor: String
 )

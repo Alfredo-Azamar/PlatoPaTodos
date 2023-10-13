@@ -1,13 +1,20 @@
 package mx.mr.platopatodos.ui.dashboard
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mx.mr.platopatodos.databinding.FragmentDashboardBinding
 import mx.mr.platopatodos.model.ListaServiciosAPI
 import mx.mr.platopatodos.model.MyDate
 import mx.mr.platopatodos.model.Prefs
 import mx.mr.platopatodos.model.RetrofitManager
+import mx.mr.platopatodos.model.responses.DashboardRes
+import mx.mr.platopatodos.model.responses.LoginRes
 import mx.mr.platopatodos.ui.incident.IncidentVM
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 /**
@@ -15,12 +22,48 @@ import mx.mr.platopatodos.ui.incident.IncidentVM
  * @author Héctor González Sánchez
  */
 
-class DashboardVM : ViewModel() {
+class DashboardVM() : ViewModel() {
 
+    val dashBDPt1 = MutableLiveData<String?>()
+    val dashBDPt2 = MutableLiveData<String?>()
+    val dashBDPt3 = MutableLiveData<String?>()
+    val dashBDPt4 = MutableLiveData<String?>()
+
+    // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
-    private lateinit var prefs: Prefs
 
-    val diningName = prefs.getLocation()
-    val date = MyDate().getCurrentDate()
-    //fun getDashboardInfo(diningName: String, date: String) {}
+
+    fun getDashboardInfo(diningName: String) {
+        //val date = MyDate().getCurrentDate()
+        val date = "2023-09-17" // Change
+
+        apiCall.getDashboardInfo(diningName, date).enqueue(object: Callback<DashboardRes> {
+
+            override fun onResponse(call: Call<DashboardRes>, response: Response<DashboardRes>) {
+                if (response.isSuccessful) {
+                    response.body()?.table?.let { table ->
+                        table[0].Valor.let { data1 ->
+                            dashBDPt1.value = data1
+                        }
+                        table[1].Valor.let {data2 ->
+                            dashBDPt2.value = data2
+                        }
+                        table[2].Valor.let {data3 ->
+                            dashBDPt3.value = data3
+                        }
+                        table[3].Valor.let {data4 ->
+                            dashBDPt4.value = "$$data4"
+                        }
+                    }
+                } else {
+                    println("Falla: ${response.code()}")
+                    println("Error: ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<DashboardRes>, t: Throwable) {
+                println("ERROR: ${t.localizedMessage}")
+            }
+        })
+    }
 }

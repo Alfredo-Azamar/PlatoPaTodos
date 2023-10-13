@@ -15,7 +15,12 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.Path
+
+/**
+ * Services Pool
+ * @author Héctor González Sánchez
+ */
 
 interface ListaServiciosAPI {
 
@@ -42,6 +47,6 @@ interface ListaServiciosAPI {
     @GET("condicionComensal")
     fun getVulSituation(): Call<Array<VulnerableSitRes>>
 
-    @GET("dashBoard")
-    fun getDashboardInfo(@Query("nombreCom") diningName: String, @Query("fecha") date: String): Call<Array<DashboardRes>>
+    @GET("dashBoard/{nombreCom}/{fecha}")
+    fun getDashboardInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardRes>
 }
