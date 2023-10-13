@@ -24,7 +24,12 @@ class RegActivity : AppCompatActivity() {
         binding = ActivityRegBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getVulSituations()
         uploadCustomer()
+    }
+
+    private fun getVulSituations() {
+
     }
 
     private fun uploadCustomer() {

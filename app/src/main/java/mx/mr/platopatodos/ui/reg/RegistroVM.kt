@@ -5,6 +5,7 @@ import mx.mr.platopatodos.model.ListaServiciosAPI
 import mx.mr.platopatodos.model.RetrofitManager
 import mx.mr.platopatodos.model.requests.RegisterReq
 import mx.mr.platopatodos.model.responses.RegisterRes
+import mx.mr.platopatodos.model.responses.vulCondRes
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
@@ -35,6 +36,26 @@ class RegistroVM : ViewModel() {
             }
 
             override fun onFailure(call: Call<RegisterRes>, t: Throwable) {
+                println("ERROR: ${t.localizedMessage}")
+                t.printStackTrace()
+            }
+
+        })
+    }
+
+    fun getVulSituations() {
+        val call = apiCall.getVulSituations()
+        call.enqueue(object: Callback<vulCondRes> {
+            override fun onResponse(call: Call<vulCondRes>, response: Response<vulCondRes>) {
+                if(response.isSuccessful) {
+                    println("Condiciones: ${response.body()}")
+                } else {
+                    println("Falla: ${response.code()}")
+                    println("Error: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<vulCondRes>, t: Throwable) {
                 println("ERROR: ${t.localizedMessage}")
                 t.printStackTrace()
             }
