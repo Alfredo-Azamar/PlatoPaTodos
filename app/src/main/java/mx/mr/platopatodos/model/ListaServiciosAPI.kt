@@ -38,7 +38,7 @@ interface ListaServiciosAPI {
     fun uploadAttendance(@Body attendance: AssistReq): Call<StringResponse>
 
     @GET("condicionComensal")
-    fun getVulSituations(): Call<List<vulCondRes>>
+    fun getVulSituations(): Call<vulCondRes>
 
 
 }
