@@ -8,8 +8,10 @@ import mx.mr.platopatodos.model.requests.RegisterReq
 import mx.mr.platopatodos.model.responses.LoginRes
 import mx.mr.platopatodos.model.responses.RegisterRes
 import mx.mr.platopatodos.model.responses.StringResponse
+import mx.mr.platopatodos.model.responses.vulCondRes
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -34,6 +36,9 @@ interface ListaServiciosAPI {
     @Headers("Content-Type: application/json")
     @POST("insertaAsistencia")
     fun uploadAttendance(@Body attendance: AssistReq): Call<StringResponse>
+
+    @GET("condicionComensal")
+    fun getVulSituations(): Call<List<vulCondRes>>
 
 
 }
