@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.FragmentIncidentBinding
-import mx.mr.platopatodos.model.MyDate
 import mx.mr.platopatodos.model.Prefs
 import mx.mr.platopatodos.ui.incident.IncidentVM
 
@@ -24,7 +23,6 @@ class IncidentFrag : Fragment() {
     private lateinit var binding: FragmentIncidentBinding
     private val viewModel: IncidentVM by viewModels()
     private lateinit var prefs: Prefs
-    private lateinit var date: MyDate
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

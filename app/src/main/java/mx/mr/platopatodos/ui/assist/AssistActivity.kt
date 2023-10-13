@@ -6,6 +6,10 @@ import androidx.activity.viewModels
 import mx.mr.platopatodos.databinding.ActivityAssistBinding
 import mx.mr.platopatodos.model.Prefs
 
+/**
+ * Attendance View
+ * @author Héctor González Sánchez
+ */
 
 class AssistActivity : AppCompatActivity() {
 

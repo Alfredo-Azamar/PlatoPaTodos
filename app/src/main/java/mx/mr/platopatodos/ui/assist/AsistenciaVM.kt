@@ -10,6 +10,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Attendance ViewModel
+ * @author Héctor González Sánchez
+ */
+
 class AsistenciaVM : ViewModel() {
 
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService

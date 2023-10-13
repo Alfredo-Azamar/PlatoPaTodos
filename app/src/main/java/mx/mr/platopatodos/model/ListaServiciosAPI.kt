@@ -5,13 +5,17 @@ import mx.mr.platopatodos.model.requests.IncidentReq
 import mx.mr.platopatodos.model.requests.LoginReq
 import mx.mr.platopatodos.model.requests.MenuReq
 import mx.mr.platopatodos.model.requests.RegisterReq
+import mx.mr.platopatodos.model.responses.DashboardRes
 import mx.mr.platopatodos.model.responses.LoginRes
 import mx.mr.platopatodos.model.responses.RegisterRes
 import mx.mr.platopatodos.model.responses.StringResponse
+import mx.mr.platopatodos.model.responses.VulnerableSitRes
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ListaServiciosAPI {
 
@@ -35,5 +39,9 @@ interface ListaServiciosAPI {
     @POST("insertaAsistencia")
     fun uploadAttendance(@Body attendance: AssistReq): Call<StringResponse>
 
+    @GET("condicionComensal")
+    fun getVulSituation(): Call<Array<VulnerableSitRes>>
 
+    @GET("dashBoard")
+    fun getDashboardInfo(@Query("nombreCom") diningName: String, @Query("fecha") date: String): Call<Array<DashboardRes>>
 }
