@@ -47,9 +47,6 @@ interface ListaServiciosAPI {
     @POST("insertaAsistencia")
     fun uploadAttendance(@Body attendance: AssistReq): Call<StringResponse>
 
-    @GET("condicionComensal")
-    fun getVulSituation(): Call<Array<VulnerableSitRes>>
-
     @GET("dashBoard/{nombreCom}/{fecha}")
     fun getDashboardInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardRes>
 
