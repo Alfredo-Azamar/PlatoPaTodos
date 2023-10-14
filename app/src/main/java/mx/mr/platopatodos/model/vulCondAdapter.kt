@@ -13,6 +13,7 @@ import mx.mr.platopatodos.model.responses.vulCondItem
 class vulCondAdapter(private val context: Context, var arrVulCond: Array<vulCondItem>)
     : RecyclerView.Adapter<vulCondAdapter.vulCondCheck>()
 {
+    var selectedConditions: MutableList<String> = mutableListOf()
     class vulCondCheck(var checkBoxView: View): RecyclerView.ViewHolder(checkBoxView)
     {
         fun set(conditionName: vulCondItem) {
@@ -32,6 +33,18 @@ class vulCondAdapter(private val context: Context, var arrVulCond: Array<vulCond
     override fun onBindViewHolder(holder: vulCondCheck, position: Int) {
         val conditionName = arrVulCond[position]
         holder.set(conditionName)
+
+        // Handle check/uncheck from checkbox (New)
+        holder.checkBoxView.findViewById<CheckBox>(R.id.cb_vulCondition)
+            .setOnCheckedChangeListener{_, isChecked ->
+                if(isChecked) {
+                    selectedConditions.add(conditionName.Nombre)
+                    println("Condiciones: $selectedConditions")
+                } else {
+                    selectedConditions.remove(conditionName.Nombre)
+                    println("Condiciones: $selectedConditions")
+                }
+            }
     }
 
 }

@@ -131,9 +131,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="18dp"
-                    app:startIconDrawable="@drawable/baseline_fingerprint_24"
                     android:alpha="0.8"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/baseline_fingerprint_24">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_curp"
@@ -153,9 +153,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:startIconDrawable="@drawable/baseline_date_range_24"
                         android:alpha="0.8"
-                        app:errorEnabled="true">
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/baseline_date_range_24">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_bDate"
