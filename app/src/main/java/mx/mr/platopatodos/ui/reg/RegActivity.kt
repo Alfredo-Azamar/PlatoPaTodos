@@ -3,9 +3,11 @@ package mx.mr.platopatodos.ui.reg
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.ActivityMenuBinding
 import mx.mr.platopatodos.databinding.ActivityRegBinding
+import mx.mr.platopatodos.model.vulCondAdapter
 import mx.mr.platopatodos.ui.menu.MenuVM
 
 /**
@@ -15,9 +17,10 @@ import mx.mr.platopatodos.ui.menu.MenuVM
 
 class RegActivity : AppCompatActivity() {
 
-    // Binding & ViewModel
+    // Binding, ViewModel & Adaptator
     private val viewModel: RegistroVM by viewModels()
     private lateinit var binding: ActivityRegBinding
+    private var adapter: vulCondAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +31,20 @@ class RegActivity : AppCompatActivity() {
         uploadCustomer()
     }
 
-    private fun getVulSituations() {
+    override fun onStart() {
+        super.onStart()
+        viewModel.getVulSituations()
+    }
 
+    private fun getVulSituations() {
+        val layout = GridLayoutManager(this, 2)
+        binding.rvVulSituations.layoutManager = layout
+
+        viewModel.vulCondList.observe(this) {vulCondList ->
+            val arrVulCond = vulCondList.toTypedArray()
+            adapter = vulCondAdapter(this, arrVulCond)
+            binding.rvVulSituations.adapter = adapter
+        }
     }
 
     private fun uploadCustomer() {

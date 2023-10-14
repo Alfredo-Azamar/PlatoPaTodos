@@ -1,10 +1,12 @@
 package mx.mr.platopatodos.ui.reg
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mx.mr.platopatodos.model.ListaServiciosAPI
 import mx.mr.platopatodos.model.RetrofitManager
 import mx.mr.platopatodos.model.requests.RegisterReq
 import mx.mr.platopatodos.model.responses.RegisterRes
+import mx.mr.platopatodos.model.responses.vulCondItem
 import mx.mr.platopatodos.model.responses.vulCondRes
 import retrofit2.Call
 import retrofit2.Response
@@ -18,6 +20,7 @@ import retrofit2.Callback
 class RegistroVM : ViewModel() {
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
+    val vulCondList = MutableLiveData<List<vulCondItem>>()
 
     fun uploadCostumer(name: String, p_lastName: String, m_lastName: String,
                        curp: String, bDate: Int, gender: String, vulSituation: Array<String>) {
@@ -48,7 +51,11 @@ class RegistroVM : ViewModel() {
         call.enqueue(object: Callback<vulCondRes> {
             override fun onResponse(call: Call<vulCondRes>, response: Response<vulCondRes>) {
                 if(response.isSuccessful) {
-                    println("Condiciones: ${response.body()}")
+                    val vulConRes = response.body()
+                    vulConRes?.let {
+                        vulCondList.value = it.table
+                    }
+                    println(vulCondList)
                 } else {
                     println("Falla: ${response.code()}")
                     println("Error: ${response.errorBody()?.string()}")

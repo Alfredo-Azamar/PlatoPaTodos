@@ -10,7 +10,7 @@ import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.VulSituationBinding
 import mx.mr.platopatodos.model.responses.vulCondItem
 
-class vulCondAdapter(private val context: Context, var arrVulCond: List<vulCondItem>)
+class vulCondAdapter(private val context: Context, var arrVulCond: Array<vulCondItem>)
     : RecyclerView.Adapter<vulCondAdapter.vulCondCheck>()
 {
     class vulCondCheck(var checkBoxView: View): RecyclerView.ViewHolder(checkBoxView)
