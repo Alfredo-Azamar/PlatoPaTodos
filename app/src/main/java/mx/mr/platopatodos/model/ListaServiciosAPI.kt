@@ -6,6 +6,7 @@ import mx.mr.platopatodos.model.requests.IncidentReq
 import mx.mr.platopatodos.model.requests.LoginReq
 import mx.mr.platopatodos.model.requests.MenuReq
 import mx.mr.platopatodos.model.requests.RegisterReq
+import mx.mr.platopatodos.model.responses.DashboardCompRes
 import mx.mr.platopatodos.model.responses.DashboardRes
 import mx.mr.platopatodos.model.responses.LoginRes
 import mx.mr.platopatodos.model.responses.RegisterRes
@@ -51,6 +52,9 @@ interface ListaServiciosAPI {
 
     @GET("dashBoard/{nombreCom}/{fecha}")
     fun getDashboardInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardRes>
+
+    @GET("dashBoardComp/{nombreCom}/{fecha}")
+    fun getDashboardCompInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardCompRes>
 
     @Headers("Content-Type: application/json")
     @PUT("actualizaEstadoCom")

@@ -62,5 +62,6 @@ class DashboardFrag : Fragment() {
         super.onStart()
         val diningName = prefs.getLocation()
         viewModel.getDashboardInfo(diningName)
+        viewModel.getDashboardCompInfo(diningName)
     }
 }
