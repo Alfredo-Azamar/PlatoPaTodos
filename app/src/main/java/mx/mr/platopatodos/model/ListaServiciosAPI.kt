@@ -11,7 +11,6 @@ import mx.mr.platopatodos.model.responses.StringResponse
 import mx.mr.platopatodos.model.responses.vulCondRes
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -40,5 +39,7 @@ interface ListaServiciosAPI {
     @GET("condicionComensal")
     fun getVulSituations(): Call<vulCondRes>
 
+    @GET("dashBoard/{nombreCom}/{fecha}")
+    fun getDashboardInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardRes>
 
 }

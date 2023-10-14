@@ -41,7 +41,7 @@ class MenuActivity : AppCompatActivity() {
             val beansSauce = binding.etBeansSauce.text.toString()
 
             viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
-
+            viewModel.updateDinStatus(diningName)
         }
     }
 }

@@ -11,6 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Login ViewModel
+ * @author Héctor González Sánchez
+ */
+
 class LoginVM : ViewModel() {
 
     private val _navigateToNewAct = MutableLiveData<Boolean>()
@@ -27,7 +32,7 @@ class LoginVM : ViewModel() {
     fun userLogin(username: String, password: String) {
         val requestBody = LoginReq(username, password)
 
-        apiCall.userLogin(requestBody).enqueue(object : Callback<LoginRes> {
+        apiCall.userLogin(requestBody).enqueue(object: Callback<LoginRes> {
 
             override fun onResponse(call: Call<LoginRes>, response: Response<LoginRes>) {
                 if (response.isSuccessful) {

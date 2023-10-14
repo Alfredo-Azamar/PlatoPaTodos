@@ -5,6 +5,7 @@ import mx.mr.platopatodos.model.MyDate
 import mx.mr.platopatodos.model.ListaServiciosAPI
 import mx.mr.platopatodos.model.requests.MenuReq
 import mx.mr.platopatodos.model.RetrofitManager
+import mx.mr.platopatodos.model.requests.ChgStatusDining
 import mx.mr.platopatodos.model.responses.StringResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,8 +34,34 @@ class MenuVM : ViewModel() {
                 if(response.isSuccessful) {
                     println("Mensaje: ${response.body()}")
                 } else {
+                    println("Mensaje: ${requestBody}")
+
+                    //println("Falla: ${response.code()}")
+                    //println("Error: ${response.errorBody()?.string()}")
+                    //println("Nombre del Comedor: ${diningName}")
+                    //println("Date: ${date.getCurrentDate()}")
+                }
+            }
+
+            override fun onFailure(call: Call<StringResponse>, t: Throwable) {
+                println("ERROR: ${t.localizedMessage}")
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun updateDinStatus(diningName: String) {
+
+        val diningStatus = "Abierto"
+        val requestBody = ChgStatusDining(diningName, diningStatus)
+
+        apiCall.updateDinStatus(requestBody).enqueue(object: Callback<StringResponse> {
+
+            override fun onResponse(call: Call<StringResponse>, response: Response<StringResponse>) {
+                if(response.isSuccessful) {
+                    println("Mensaje: El estatus ha cambiado")
+                } else {
                     println("Falla: ${response.code()}")
-                    println("Date: ${date.getCurrentDate()}")
                     println("Error: ${response.errorBody()?.string()}")
                 }
             }
@@ -43,7 +70,6 @@ class MenuVM : ViewModel() {
                 println("ERROR: ${t.localizedMessage}")
                 t.printStackTrace()
             }
-
         })
     }
 }
