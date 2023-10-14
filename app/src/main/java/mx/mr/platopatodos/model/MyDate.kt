@@ -5,6 +5,11 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
+/**
+ * Retrieving Date
+ * @author Héctor González Sánchez
+ */
+
 class MyDate() {
     fun getCurrentDate(): String {
         val calendar = Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"))

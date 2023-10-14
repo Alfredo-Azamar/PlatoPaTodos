@@ -2,6 +2,11 @@ package mx.mr.platopatodos.model.requests
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Dining Incident Request Model
+ * @author Héctor González Sánchez
+ */
+
 data class IncidentReq(
     @SerializedName("nombreCom") var diningName: String,
     @SerializedName("tipo") var issue: String,

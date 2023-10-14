@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import mx.mr.platopatodos.model.responses.vulCondItem
 
 /**
- * Customer's register Request Model
+ * Customer's registration Request Model
  * @author Héctor González Sánchez
  */
 

@@ -20,6 +20,11 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
+/**
+ * Services (APIs) Pool
+ * @author Héctor González Sánchez
+ */
+
 interface ListaServiciosAPI {
 
     @Headers("Content-Type: application/json")
@@ -54,5 +59,4 @@ interface ListaServiciosAPI {
     @Headers("Content-Type: application/json")
     @PUT("actualizaEstadoCom")
     fun updateDinStatus(@Body description: ChgStatusDining): Call<StringResponse>
-
 }

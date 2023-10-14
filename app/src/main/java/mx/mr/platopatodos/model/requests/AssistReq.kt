@@ -2,6 +2,11 @@ package mx.mr.platopatodos.model.requests
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Attendance Request Model
+ * @author Héctor González Sánchez
+ */
+
 data class AssistReq(
     @SerializedName("nombreCom") var location: String,
     @SerializedName("tipoRacion") var type: String,

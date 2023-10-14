@@ -1,5 +1,10 @@
 package mx.mr.platopatodos.model.responses
 
+/**
+ * Dashboard Competitive Response Model
+ * @author Héctor González Sánchez
+ */
+
 data class DashboardCompRes(
     var table: List<TableItemDBComp>
 )

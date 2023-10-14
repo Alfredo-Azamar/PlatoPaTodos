@@ -2,6 +2,11 @@ package mx.mr.platopatodos.model
 
 import android.content.Context
 
+/**
+ * Preferences
+ * @author Héctor González Sánchez
+ */
+
 class Prefs(val context: Context) {
 
     // Shared Preferences DB Name

@@ -10,6 +10,11 @@ import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.VulSituationBinding
 import mx.mr.platopatodos.model.responses.vulCondItem
 
+/**
+ * Adapter for the Customer's Vulnerable Situation
+ * @author Héctor González Sánchez
+ */
+
 class vulCondAdapter(private val context: Context, var arrVulCond: Array<vulCondItem>)
     : RecyclerView.Adapter<vulCondAdapter.vulCondCheck>()
 {
