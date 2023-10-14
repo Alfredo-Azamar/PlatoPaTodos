@@ -11,7 +11,7 @@ data class MenuReq(
     @SerializedName("nombreCom") var diningName: String,
     @SerializedName("sopaArroz") var soup: String,
     @SerializedName("platoFuerte") var mainCourse: String,
-    @SerializedName("panToritilla") var carbs: String,
+    @SerializedName("panTortilla") var carbs: String,
     @SerializedName("aguaDelDia") var water: String,
     @SerializedName("frijolesSalsa") var beansSauce: String,
     @SerializedName("fecha") var date: String

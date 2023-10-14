@@ -1,6 +1,7 @@
 package mx.mr.platopatodos.model
 
 import mx.mr.platopatodos.model.requests.AssistReq
+import mx.mr.platopatodos.model.requests.ChgStatusDining
 import mx.mr.platopatodos.model.requests.IncidentReq
 import mx.mr.platopatodos.model.requests.LoginReq
 import mx.mr.platopatodos.model.requests.MenuReq
@@ -15,6 +16,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 /**
@@ -49,4 +51,8 @@ interface ListaServiciosAPI {
 
     @GET("dashBoard/{nombreCom}/{fecha}")
     fun getDashboardInfo(@Path("nombreCom") diningName: String, @Path("fecha") date: String): Call<DashboardRes>
+
+    @Headers("Content-Type: application/json")
+    @PUT("actualizaEstadoCom")
+    fun updateDinStatus(@Body description: ChgStatusDining): Call<StringResponse>
 }
