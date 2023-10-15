@@ -1,5 +1,6 @@
 package mx.mr.platopatodos.ui.incident
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.FragmentIncidentBinding
 import mx.mr.platopatodos.model.Prefs
@@ -36,6 +38,7 @@ class IncidentFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         insertIncident()
+        changeStatus()
     }
 
     private fun insertIncident() {
@@ -46,7 +49,18 @@ class IncidentFrag : Fragment() {
             val description = binding.etDescription.text.toString()
 
             viewModel.insertIncident(diningName, issue, description)
+            findNavController().navigateUp()
+        }
+    }
 
+    @SuppressLint("SetTextI18n")
+    private fun changeStatus() {
+        binding.etClosure.setOnClickListener {
+            val diningName = prefs.getLocation()
+            viewModel.updateDinStatus(diningName)
+            val cardsViewClickable = false
+            prefs.saveStautsCV(cardsViewClickable)
+            binding.etClosure.text = "Cerrado!"
         }
     }
 

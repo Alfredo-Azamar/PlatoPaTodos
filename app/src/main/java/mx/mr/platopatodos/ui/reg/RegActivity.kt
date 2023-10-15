@@ -2,11 +2,14 @@ package mx.mr.platopatodos.ui.reg
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.mr.platopatodos.databinding.ActivityRegBinding
 import mx.mr.platopatodos.model.vulCondAdapter
+import android.util.Log
+import androidx.appcompat.app.AlertDialog
 
 /**
  * Registro View
@@ -29,7 +32,6 @@ class RegActivity : AppCompatActivity() {
 
         getVulSituations()
         uploadCustomer()
-        //getSelectedConditions()
     }
 
     override fun onStart() {
@@ -68,7 +70,23 @@ class RegActivity : AppCompatActivity() {
             val gender = binding.spGender.selectedItem.toString()
             val vulSituation:Array<String> = getCond()
 
-            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation)
+            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
+                if (success) {
+                    val token = viewModel.customerToken.value
+                    if (!token.isNullOrBlank()){
+                        val alert = AlertDialog.Builder(this)
+                            .setTitle("T O K E N")
+                            .setMessage("Se le proporciona el siguiente token: ${token}")
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar"){_, _ ->
+                                finish()
+                            }
+                        alert.show()
+                    } else {
+                        println("ERROR")
+                    }
+                }
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package mx.mr.platopatodos.ui.assist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.findNavController
 import mx.mr.platopatodos.databinding.ActivityAssistBinding
 import mx.mr.platopatodos.model.Prefs
 
@@ -35,6 +36,7 @@ class AssistActivity : AppCompatActivity() {
             val accessType = binding.etAccessType.text.toString()
 
             viewModel.uploadAttendance(diningName, type, servings, accessType)
+            finish()
         }
     }
 }

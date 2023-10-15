@@ -1,11 +1,16 @@
 package mx.mr.platopatodos.ui.menu
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.cardview.widget.CardView
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.ActivityMenuBinding
+import mx.mr.platopatodos.databinding.FragmentHomeBinding
 import mx.mr.platopatodos.model.Prefs
 
 /**
@@ -28,6 +33,7 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         uploadMenu()
+//        setupListeners()
     }
 
     private fun uploadMenu() {
@@ -42,6 +48,19 @@ class MenuActivity : AppCompatActivity() {
 
             viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
             viewModel.updateDinStatus(diningName)
+
+
+            //Clickable Component for CardViews
+            val cardsViewClickable = true
+            prefs.saveStautsCV(cardsViewClickable)
+            finish()
         }
     }
+
+//    private fun setupListeners() {
+//        viewModel.currentStatus.observe(this) {status ->
+//            prefs.saveStautsCV(status)
+//            println(status)
+//        }
+//    }
 }

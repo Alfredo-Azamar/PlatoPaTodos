@@ -50,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassworrd.text.toString()
 
             viewModel.userLogin(user, password)
-
         }
     }
 }

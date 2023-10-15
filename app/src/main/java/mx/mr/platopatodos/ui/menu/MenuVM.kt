@@ -1,5 +1,7 @@
 package mx.mr.platopatodos.ui.menu
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mx.mr.platopatodos.model.MyDate
 import mx.mr.platopatodos.model.ListaServiciosAPI
@@ -19,6 +21,12 @@ import retrofit2.Response
 
 class MenuVM : ViewModel() {
 
+    // Preferences (Status)
+//    private val _currentStatus = MutableLiveData<Boolean>()
+
+//    val currentStatus: LiveData<Boolean>
+//        get() = _currentStatus
+
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
@@ -33,13 +41,9 @@ class MenuVM : ViewModel() {
             override fun onResponse(call: Call<StringResponse>, response: Response<StringResponse>) {
                 if(response.isSuccessful) {
                     println("Mensaje: ${response.body()}")
+//                    _currentStatus.postValue(true)
                 } else {
                     println("Mensaje: ${requestBody}")
-
-                    //println("Falla: ${response.code()}")
-                    //println("Error: ${response.errorBody()?.string()}")
-                    //println("Nombre del Comedor: ${diningName}")
-                    //println("Date: ${date.getCurrentDate()}")
                 }
             }
 

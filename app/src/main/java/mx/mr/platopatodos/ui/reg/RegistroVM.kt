@@ -21,9 +21,11 @@ class RegistroVM : ViewModel() {
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
     val vulCondList = MutableLiveData<List<vulCondItem>>()
+    var customerToken = MutableLiveData<String>()
 
     fun uploadCostumer(name: String, p_lastName: String, m_lastName: String,
-                       curp: String, bDate: String, gender: String, vulSituation: Array<String>) {
+                       curp: String, bDate: String, gender: String,
+                       vulSituation: Array<String>, callback: (Boolean) -> Unit) {
 
         val requestBody = RegisterReq(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation)
 
@@ -32,15 +34,19 @@ class RegistroVM : ViewModel() {
             override fun onResponse(call: Call<RegisterRes>, response: Response<RegisterRes>) {
                 if(response.isSuccessful) {
                     println("Mensaje: ${response.body()}")
+                    customerToken.value = response.body()?.token.toString()
+                    callback(true)
                 } else {
                     println("Falla: ${response.code()}")
                     println("Error: ${response.errorBody()?.string()}")
+                    callback(false)
                 }
             }
 
             override fun onFailure(call: Call<RegisterRes>, t: Throwable) {
                 println("ERROR: ${t.localizedMessage}")
                 t.printStackTrace()
+                callback(false)
             }
 
         })

@@ -62,79 +62,113 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="-40dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/sec_app"
-            android:orientation="vertical"
-            android:padding="32dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/baseline_fingerprint_24"
-                android:alpha="0.8"
-                app:counterEnabled="true"
-                app:counterMaxLength="18"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_accessType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="CURP / Token"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:background="@color/sec_app"
+                android:orientation="vertical"
+                android:padding="32dp">
+
+                <ImageView
+                    android:id="@+id/imageCoso"
+                    android:layout_width="305dp"
+                    android:layout_height="201dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:scaleType="centerInside"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/prueba1" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?android:attr/listDivider"
+                    android:backgroundTint="@color/main_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:startIconDrawable="@drawable/baseline_food_bank_24"
+                    android:layout_marginTop="20dp"
                     android:alpha="0.8"
-                    app:errorEnabled="true">
+                    app:counterEnabled="true"
+                    app:counterMaxLength="18"
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/baseline_fingerprint_24">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_servings"
+                        android:id="@+id/et_accessType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Raciones"
-                        android:inputType="numberDecimal" />
+                        android:hint="CURP / Token"
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Spinner
-                    android:id="@+id/sp_type"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="1"
-                    android:alpha="0.8"
-                    android:entries="@array/spinner_servings" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:alpha="0.8"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/baseline_food_bank_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_servings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Raciones"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Spinner
+                        android:id="@+id/sp_type"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:alpha="0.8"
+                        android:entries="@array/spinner_servings" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_uploadAtten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="48dp"
+                    android:backgroundTint="@color/purple_dif"
+                    android:text="Tomar asistencia" />
+
             </LinearLayout>
+        </ScrollView>
 
-            <Button
-                android:id="@+id/btn_uploadAtten"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="48dp"
-                android:backgroundTint="@color/purple_dif"
-                android:text="Tomar asistencia" />
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

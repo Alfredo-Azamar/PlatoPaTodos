@@ -27,33 +27,33 @@
             android:background="@drawable/frag_bg_1">
 
             <TextView
-                android:id="@+id/et_current_dining"
+                android:id="@+id/coso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
-                android:text="TextView"
+                android:text="Plato pa' todos"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline9"
-                tools:text='Comedor "Tres Marías"' />
+                tools:text='Plato pa&apos; todos' />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/et_current_dining"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="85dp"
                 android:autoSizeTextType="uniform"
-                android:text="Plato pa' todos"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/guideline10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_current_dining" />
+                app:layout_constraintTop_toBottomOf="@+id/coso"
+                tools:text='Comedor "Tres Marías"' />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btn_status"
@@ -227,5 +227,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/baseline_exit_to_app_24"
+        app:fabSize="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gl_bottom"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
