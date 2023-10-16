@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.mr.platopatodos.databinding.ActivityRegBinding
 import mx.mr.platopatodos.model.QrManager
+import mx.mr.platopatodos.model.responses.vulCondItem
 import mx.mr.platopatodos.model.vulCondAdapter
 
 /**
@@ -26,6 +27,11 @@ class RegActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Adaptador vacío
+        val arrVulCond = listOf<vulCondItem>()
+        adapter = vulCondAdapter(this, arrVulCond.toTypedArray())
+        binding.rvVulSituations.adapter = adapter
 
         scanQR()
         getVulSituations()
