@@ -35,4 +35,8 @@ class Prefs(val context: Context) {
     fun getStatus(): Boolean {
         return storage.getBoolean(SHARED_STATUS_CV,false)
     }
+
+    fun wipe() {
+        storage.edit().clear().apply()
+    }
 }
