@@ -46,13 +46,9 @@ class AssistActivity : AppCompatActivity() {
         binding.btnAssistQR.setOnClickListener {
             QrManager.startQrCodeScanner(this, { result ->
 
-                val regex = Regex("([A-Z0-9]+)\\|\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|(\\d{2}/\\d{2}/\\d{4})\\|([A-Z]+)\\|\\d+\\|")
-                val matchResult = regex.find(result)
-
-                if(matchResult != null) {
-                    val (curp) = matchResult.destructured
-                    binding.etAccessType.setText(curp)
-                } },
+                val regex = """\|+""".toRegex()
+                val regexRes = regex.split(result)
+                binding.etAccessType.setText(regexRes[0]) },
 
                 { error ->
                     println(error.message) }
