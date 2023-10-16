@@ -162,9 +162,21 @@
                     android:id="@+id/btn_uploadAtten"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="48dp"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginRight="48dp"
                     android:backgroundTint="@color/purple_dif"
                     android:text="Tomar asistencia" />
+
+                <TextView
+                    android:id="@+id/tv_assistHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="¿No conoces tus datos?"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_dif" />
 
             </LinearLayout>
         </ScrollView>

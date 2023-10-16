@@ -1,5 +1,7 @@
 package mx.mr.platopatodos.ui.assist
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -27,6 +29,7 @@ class AssistActivity : AppCompatActivity() {
 
         scanQR()
         uploadAttendance()
+        getHelp()
     }
 
     private fun uploadAttendance() {
@@ -53,6 +56,14 @@ class AssistActivity : AppCompatActivity() {
                 { error ->
                     println(error.message) }
             )
+        }
+    }
+
+    private fun getHelp() {
+        binding.tvAssistHelp.setOnClickListener {
+            val url = "https://www.gob.mx/curp/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
     }
 }
