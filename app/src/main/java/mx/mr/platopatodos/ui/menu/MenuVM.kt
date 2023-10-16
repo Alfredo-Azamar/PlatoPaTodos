@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mx.mr.platopatodos.model.MyDate
 import mx.mr.platopatodos.model.ListaServiciosAPI
+import mx.mr.platopatodos.model.Prefs
 import mx.mr.platopatodos.model.requests.MenuReq
 import mx.mr.platopatodos.model.RetrofitManager
 import mx.mr.platopatodos.model.requests.ChgStatusDining
@@ -23,7 +24,7 @@ class MenuVM : ViewModel() {
 
     // Preferences (Status)
 //    private val _currentStatus = MutableLiveData<Boolean>()
-
+//
 //    val currentStatus: LiveData<Boolean>
 //        get() = _currentStatus
 
