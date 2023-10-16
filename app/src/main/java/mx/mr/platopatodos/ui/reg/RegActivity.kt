@@ -1,5 +1,7 @@
 package mx.mr.platopatodos.ui.reg
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -36,6 +38,7 @@ class RegActivity : AppCompatActivity() {
         scanQR()
         getVulSituations()
         uploadCustomer()
+        getHelp()
     }
 
     override fun onStart() {
@@ -140,6 +143,14 @@ class RegActivity : AppCompatActivity() {
                 { error ->
                     println(error.message) }
             )
+        }
+    }
+
+    private fun getHelp() {
+        binding.tvHelpReg.setOnClickListener {
+            val url = "https://www.gob.mx/curp/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
     }
 }
