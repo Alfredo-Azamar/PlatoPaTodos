@@ -10,6 +10,7 @@ import mx.mr.platopatodos.R
 import mx.mr.platopatodos.View.MainActivity
 import mx.mr.platopatodos.databinding.ActivityLoginBinding
 import mx.mr.platopatodos.model.Prefs
+import mx.mr.platopatodos.model.QrManager
 
 class LoginActivity : AppCompatActivity() {
 

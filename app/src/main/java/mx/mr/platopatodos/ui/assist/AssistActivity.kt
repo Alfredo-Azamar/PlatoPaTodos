@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import mx.mr.platopatodos.databinding.ActivityAssistBinding
 import mx.mr.platopatodos.model.Prefs
+import mx.mr.platopatodos.model.QrManager
 
 /**
  * Attendance View
@@ -24,6 +25,7 @@ class AssistActivity : AppCompatActivity() {
         prefs = Prefs(applicationContext)
         setContentView(binding.root)
 
+        scanQR()
         uploadAttendance()
     }
 
@@ -37,6 +39,24 @@ class AssistActivity : AppCompatActivity() {
 
             viewModel.uploadAttendance(diningName, type, servings, accessType)
             finish()
+        }
+    }
+
+    private fun scanQR() {
+        binding.btnAssistQR.setOnClickListener {
+            QrManager.startQrCodeScanner(this, { result ->
+
+                val regex = Regex("([A-Z0-9]+)\\|\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|(\\d{2}/\\d{2}/\\d{4})\\|([A-Z]+)\\|\\d+\\|")
+                val matchResult = regex.find(result)
+
+                if(matchResult != null) {
+                    val (curp) = matchResult.destructured
+                    binding.etAccessType.setText(curp)
+                } },
+
+                { error ->
+                    println(error.message) }
+            )
         }
     }
 }

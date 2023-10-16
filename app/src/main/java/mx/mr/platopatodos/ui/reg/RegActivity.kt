@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.mr.platopatodos.databinding.ActivityRegBinding
+import mx.mr.platopatodos.model.QrManager
 import mx.mr.platopatodos.model.vulCondAdapter
 
 /**
@@ -26,6 +27,7 @@ class RegActivity : AppCompatActivity() {
         binding = ActivityRegBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        scanQR()
         getVulSituations()
         uploadCustomer()
     }
@@ -86,9 +88,37 @@ class RegActivity : AppCompatActivity() {
         }
     }
 
-    fun getCond(): Array<String> {
+    private fun getCond(): Array<String> {
         val selectedCondition = adapter?.selectedConditions
         return selectedCondition!!.toTypedArray()
     }
 
+    private fun scanQR() {
+        binding.btnRegQR.setOnClickListener {
+            QrManager.startQrCodeScanner(this, { result ->
+
+                val regex = Regex("([A-Z0-9]+)\\|\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|([A-Z]+)\\|(\\d{2}/\\d{2}/\\d{4})\\|([A-Z]+)\\|\\d+\\|")
+                val matchResult = regex.find(result)
+
+                if(matchResult != null) {
+                    val (curp, lastP, lastM, name, gender,bDate) = matchResult.destructured
+                    val dateParts = bDate.split("/")
+                    val year = dateParts.last()
+                    binding.etCurp.setText(curp)
+                    binding.etPLastName.setText(lastP)
+                    binding.etMLastName.setText(lastM)
+                    binding.etName.setText(name)
+                    if(gender == "HOMBRE") {
+                        binding.spGender.setSelection(0)
+                    } else {
+                        binding.spGender.setSelection(1)
+                    }
+                    binding.etBDate.setText(year)
+                } },
+
+                { error ->
+                    println(error.message) }
+            )
+        }
+    }
 }

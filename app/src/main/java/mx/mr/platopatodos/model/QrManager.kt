@@ -6,7 +6,7 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 
 object QrManager {
-    fun startQrCodeScanner(activity: Activity, resultCallback: (String?) -> Unit, errorCallback: (Exception) -> Unit) {
+    fun startQrCodeScanner(activity: Activity, resultCallback: (String) -> Unit, errorCallback: (Exception) -> Unit) {
         val options = GmsBarcodeScannerOptions.Builder()
             .enableAutoZoom()
             .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
