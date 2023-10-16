@@ -1,0 +1,92 @@
+Index: app/src/main/java/mx/mr/platopatodos/model/responses/VulnerableSitRes.kt
+===================================================================
+diff --git a/app/src/main/java/mx/mr/platopatodos/model/responses/VulnerableSitRes.kt b/app/src/main/java/mx/mr/platopatodos/model/responses/VulnerableSitRes.kt
+deleted file mode 100644
+--- a/app/src/main/java/mx/mr/platopatodos/model/responses/VulnerableSitRes.kt	(revision 0ff4df201009855b9fa6c0e37ba017cec5223c22)
++++ /dev/null	(revision 0ff4df201009855b9fa6c0e37ba017cec5223c22)
+@@ -1,9 +0,0 @@
+-package mx.mr.platopatodos.model.responses
+-
+-data class VulnerableSitRes(
+-    var table: List<TableItemSP>
+-)
+-
+-data class TableItemSP(
+-    var Nombre: String
+-)
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"jbr-17\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 0ff4df201009855b9fa6c0e37ba017cec5223c22)
++++ b/.idea/gradle.xml	(date 1697323127777)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 0ff4df201009855b9fa6c0e37ba017cec5223c22)
++++ b/.idea/misc.xml	(date 1697418209286)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+Index: app/src/main/java/mx/mr/platopatodos/ui/reg/RegActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.mr.platopatodos.ui.reg\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport androidx.activity.viewModels\r\nimport androidx.recyclerview.widget.GridLayoutManager\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport mx.mr.platopatodos.databinding.ActivityRegBinding\r\nimport mx.mr.platopatodos.model.vulCondAdapter\r\n\r\n/**\r\n * Registro View\r\n * @author Héctor González Sánchez\r\n */\r\n\r\nclass RegActivity : AppCompatActivity() {\r\n\r\n    // Binding, ViewModel & Adaptator\r\n    private val viewModel: RegistroVM by viewModels()\r\n    private lateinit var binding: ActivityRegBinding\r\n    private var adapter: vulCondAdapter? = null\r\n\r\n    val selectedConditions = listOf<String>()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityRegBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        getVulSituations()\r\n        uploadCustomer()\r\n        //getSelectedConditions()\r\n    }\r\n\r\n    override fun onStart() {\r\n        super.onStart()\r\n        viewModel.getVulSituations()\r\n    }\r\n\r\n    private fun getVulSituations() {\r\n        val layout = GridLayoutManager(this, 2)\r\n        binding.rvVulSituations.layoutManager = layout\r\n\r\n        viewModel.vulCondList.observe(this) {vulCondList ->\r\n            val arrVulCond = vulCondList.toTypedArray()\r\n            adapter = vulCondAdapter(this, arrVulCond)\r\n            binding.rvVulSituations.adapter = adapter\r\n\r\n            // Nuevo a partir de aquí\r\n            adapter?.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {\r\n                override fun onChanged() {\r\n                    super.onChanged()\r\n                    val selectedConditions = adapter?.selectedConditions\r\n                    println(\"Condiciones seleccionads: $selectedConditions\")\r\n                }\r\n            })\r\n        }\r\n    }\r\n\r\n    private fun uploadCustomer() {\r\n        binding.btnUploadCostumer.setOnClickListener {\r\n\r\n            val name = binding.etName.text.toString()\r\n            val p_lastName = binding.etPLastName.text.toString()\r\n            val m_lastName = binding.etMLastName.text.toString()\r\n            val curp = binding.etCurp.text.toString()\r\n            val bDate = binding.etBDate.text.toString()\r\n            val gender = binding.spGender.selectedItem.toString()\r\n            val vulSituation:Array<String> = getCond()\r\n\r\n            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation)\r\n        }\r\n    }\r\n\r\n    fun getCond(): Array<String> {\r\n        val selectedCondition = adapter?.selectedConditions\r\n        return selectedCondition!!.toTypedArray()\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/mx/mr/platopatodos/ui/reg/RegActivity.kt b/app/src/main/java/mx/mr/platopatodos/ui/reg/RegActivity.kt
+--- a/app/src/main/java/mx/mr/platopatodos/ui/reg/RegActivity.kt	(revision 0ff4df201009855b9fa6c0e37ba017cec5223c22)
++++ b/app/src/main/java/mx/mr/platopatodos/ui/reg/RegActivity.kt	(date 1697404930463)
+@@ -20,8 +20,6 @@
+     private lateinit var binding: ActivityRegBinding
+     private var adapter: vulCondAdapter? = null
+ 
+-    val selectedConditions = listOf<String>()
+-
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         binding = ActivityRegBinding.inflate(layoutInflater)
+@@ -29,7 +27,6 @@
+ 
+         getVulSituations()
+         uploadCustomer()
+-        //getSelectedConditions()
+     }
+ 
+     override fun onStart() {
+@@ -59,7 +56,6 @@
+ 
+     private fun uploadCustomer() {
+         binding.btnUploadCostumer.setOnClickListener {
+-
+             val name = binding.etName.text.toString()
+             val p_lastName = binding.etPLastName.text.toString()
+             val m_lastName = binding.etMLastName.text.toString()
+@@ -72,7 +68,7 @@
+         }
+     }
+ 
+-    fun getCond(): Array<String> {
++    private fun getCond(): Array<String> {
+         val selectedCondition = adapter?.selectedConditions
+         return selectedCondition!!.toTypedArray()
+     }

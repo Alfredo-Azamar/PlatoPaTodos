@@ -2,14 +2,12 @@ package mx.mr.platopatodos.ui.reg
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.mr.platopatodos.databinding.ActivityRegBinding
 import mx.mr.platopatodos.model.vulCondAdapter
-import android.util.Log
-import androidx.appcompat.app.AlertDialog
 
 /**
  * Registro View
@@ -22,8 +20,6 @@ class RegActivity : AppCompatActivity() {
     private val viewModel: RegistroVM by viewModels()
     private lateinit var binding: ActivityRegBinding
     private var adapter: vulCondAdapter? = null
-
-    val selectedConditions = listOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

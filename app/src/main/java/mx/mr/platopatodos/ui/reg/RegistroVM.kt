@@ -17,6 +17,7 @@ import retrofit2.Callback
  * @author Héctor González Sánchez
  */
 
+
 class RegistroVM : ViewModel() {
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
@@ -72,8 +73,6 @@ class RegistroVM : ViewModel() {
                 println("ERROR: ${t.localizedMessage}")
                 t.printStackTrace()
             }
-
         })
     }
-
 }
