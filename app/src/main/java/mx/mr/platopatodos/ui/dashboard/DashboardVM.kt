@@ -35,13 +35,14 @@ class DashboardVM() : ViewModel() {
 
 
     fun getDashboardInfo(diningName: String) {
-        //val date = MyDate().getCurrentDate()
-        val date = "2023-09-17" // Change
+        val date = MyDate().getCurrentDate()
+        //val date = "2023-09-17" // Change
 
         apiCall.getDashboardInfo(diningName, date).enqueue(object: Callback<DashboardRes> {
 
             override fun onResponse(call: Call<DashboardRes>, response: Response<DashboardRes>) {
                 if (response.isSuccessful) {
+                    println(response.body())
                     response.body()?.table?.let { table ->
                         table[0].Valor.let { data1 ->
                             dashBDPt1.value = data1

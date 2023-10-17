@@ -105,6 +105,7 @@ class HomeFrag : Fragment() {
     private fun logout() {
         binding.etLogout.setOnClickListener{
             println("Hizo click")
+            prefs.wipe()
 
             val diningName = prefs.getLocation()
             viewModel.updateDinStatus(diningName)

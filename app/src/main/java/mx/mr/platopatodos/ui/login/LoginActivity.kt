@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         prefs = Prefs(applicationContext)
         setContentView(binding.root)
 
+       getLogkey()
        login()
        setupListeners()
     }
@@ -32,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setupListeners() {
         viewModel.navigateToNewAct.observe(this, Observer { shouldNavigate ->
             if(shouldNavigate) {
+                prefs.saveLogin(true)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -51,6 +53,15 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassworrd.text.toString()
 
             viewModel.userLogin(user, password)
+        }
+    }
+
+    private fun getLogkey() {
+        if(prefs.getLogin()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            viewModel.onNavigationHandled()
         }
     }
 }
