@@ -109,9 +109,9 @@ class RegActivity : AppCompatActivity() {
                 val regex = """\|+""".toRegex()
                 val regexRes = regex.split(result)
                 println(result)
-
+                println(regexRes.size)
                 // No repetitions
-                if(regexRes.size == 6) {
+                if(regexRes.size == 9) {
                     binding.etCurp.setText(regexRes[0])
                     binding.etPLastName.setText(regexRes[1])
                     binding.etMLastName.setText(regexRes[2])
