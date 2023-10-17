@@ -52,6 +52,7 @@ class HomeFrag : Fragment() {
         toAssit_Register()
     }
 
+
     private fun toAssit_Register() {
         val isClickable = prefs.getStatus()
 
@@ -88,22 +89,6 @@ class HomeFrag : Fragment() {
         }
     }
 
-    private fun toAssist() {
-        binding.cvAssist.setOnClickListener {
-            println("Hizo click")
-            val action = HomeFragDirections.actionHomeFragToAssistActivity()
-            findNavController().navigate(action)
-        }
-    }
-
-    private fun toRegister() {
-        binding.cvRegister.setOnClickListener {
-            println("Hizo click")
-            val action = HomeFragDirections.actionHomeFragToRegActivity()
-            findNavController().navigate(action)
-        }
-    }
-
     private fun toMenu() {
         binding.btnStatus.setOnClickListener {
             println("Hizo click")
@@ -118,7 +103,7 @@ class HomeFrag : Fragment() {
     }
 
     private fun logout() {
-        binding.btnLogout.setOnClickListener{
+        binding.etLogout.setOnClickListener{
             println("Hizo click")
 
             val diningName = prefs.getLocation()

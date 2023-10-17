@@ -26,18 +26,17 @@
             android:layout_height="match_parent"
             android:background="@drawable/frag_bg_1">
 
-            <TextView
-                android:id="@+id/coso"
+            <ImageView
+                android:id="@+id/iv_difLogo"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="48dp"
-                android:text="Plato pa' todos"
-                android:textColor="@color/white"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="150dp"
+                android:src="@drawable/logo_dif"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline9"
-                tools:text='Plato pa&apos; todos' />
+                app:layout_constraintBottom_toTopOf="@id/guideline9"
+                tools:layout_editor_absoluteY="72dp" />
 
             <TextView
                 android:id="@+id/et_current_dining"
@@ -52,7 +51,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/guideline10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coso"
+                app:layout_constraintTop_toBottomOf="@+id/iv_difLogo"
                 tools:text='Comedor "Tres Marías"' />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -74,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.45" />
+                app:layout_constraintGuide_percent="0.5" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline10"
@@ -82,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.70" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -228,18 +228,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_logout"
+    <TextView
+        android:id="@+id/et_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/baseline_exit_to_app_24"
-        app:fabSize="normal"
+        android:layout_marginTop="32dp"
+        android:text="Cerrar sesión"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/main_color"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gl_bottom"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_assist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
