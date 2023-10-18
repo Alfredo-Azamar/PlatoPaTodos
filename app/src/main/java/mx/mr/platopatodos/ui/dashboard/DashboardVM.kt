@@ -71,8 +71,8 @@ class DashboardVM() : ViewModel() {
 
     fun getDashboardCompInfo(diningName: String) {
 
-        //val date = MyDate().getCurrentDate()
-        val date = "2023-09-17" // Change
+        val date = MyDate().getCurrentDate()
+        //val date = "2023-09-17" // Change
 
         apiCall.getDashboardCompInfo(diningName, date).enqueue(object: Callback<DashboardCompRes> {
             override fun onResponse(call: Call<DashboardCompRes>, response: Response<DashboardCompRes>) {

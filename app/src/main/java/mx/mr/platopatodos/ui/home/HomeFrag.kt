@@ -114,9 +114,9 @@ class HomeFrag : Fragment() {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
 
-            val cardsViewClickable = false
-            prefs.saveStautsCV(cardsViewClickable)
-            println("COSO STATUS LOGOUT: ${cardsViewClickable}")
+            //val cardsViewClickable = false
+            //prefs.saveStautsCV(cardsViewClickable)
+            //println("COSO STATUS LOGOUT: ${cardsViewClickable}")
         }
     }
 }

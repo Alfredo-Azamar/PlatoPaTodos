@@ -28,22 +28,21 @@
 
             <ImageView
                 android:id="@+id/iv_difLogo"
-                android:layout_width="0dp"
+                android:layout_width="220dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="150dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="79dp"
                 android:src="@drawable/logo_dif"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/guideline9"
-                tools:layout_editor_absoluteY="72dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/et_current_dining"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="85dp"
                 android:autoSizeTextType="uniform"
                 android:textColor="@color/white"
