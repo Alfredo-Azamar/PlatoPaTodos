@@ -1,0 +1,96 @@
+Index: app/src/main/java/mx/mr/platopatodos/ui/dashboard/DashboardVM.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.mr.platopatodos.ui.dashboard\n\nimport androidx.fragment.app.viewModels\nimport androidx.lifecycle.LiveData\nimport androidx.lifecycle.MutableLiveData\nimport androidx.lifecycle.ViewModel\nimport mx.mr.platopatodos.databinding.FragmentDashboardBinding\nimport mx.mr.platopatodos.model.ListaServiciosAPI\nimport mx.mr.platopatodos.model.MyDate\nimport mx.mr.platopatodos.model.Prefs\nimport mx.mr.platopatodos.model.RetrofitManager\nimport mx.mr.platopatodos.model.responses.DashboardCompRes\nimport mx.mr.platopatodos.model.responses.DashboardRes\nimport mx.mr.platopatodos.model.responses.LoginRes\nimport mx.mr.platopatodos.ui.incident.IncidentVM\nimport retrofit2.Call\nimport retrofit2.Callback\nimport retrofit2.Response\n\n\n/**\n * Dashboard Frag ViewModel\n * @author Héctor González Sánchez\n */\n\nclass DashboardVM() : ViewModel() {\n\n    val dashBDPt1 = MutableLiveData<String?>()\n    val dashBDPt2 = MutableLiveData<String?>()\n    val dashBDPt3 = MutableLiveData<String?>()\n    val dashBDPt4 = MutableLiveData<String?>()\n\n    // Retrofit object\n    private val apiCall: ListaServiciosAPI = RetrofitManager.apiService\n\n\n    fun getDashboardInfo(diningName: String) {\n        //val date = MyDate().getCurrentDate()\n        val date = \"2023-09-17\" // Change\n\n        apiCall.getDashboardInfo(diningName, date).enqueue(object: Callback<DashboardRes> {\n\n            override fun onResponse(call: Call<DashboardRes>, response: Response<DashboardRes>) {\n                if (response.isSuccessful) {\n                    response.body()?.table?.let { table ->\n                        table[0].Valor.let { data1 ->\n                            dashBDPt1.value = data1\n                        }\n                        table[1].Valor.let {data2 ->\n                            dashBDPt2.value = data2\n                        }\n                        table[2].Valor.let {data3 ->\n                            dashBDPt3.value = data3\n                        }\n                        table[3].Valor.let {data4 ->\n                            dashBDPt4.value = \"$$data4\"\n                        }\n                    }\n                } else {\n                    println(\"Falla: ${response.code()}\")\n                    println(\"Error: ${response.errorBody()}\")\n                }\n            }\n\n            override fun onFailure(call: Call<DashboardRes>, t: Throwable) {\n                println(\"ERROR: ${t.localizedMessage}\")\n            }\n        })\n    }\n\n    fun getDashboardCompInfo(diningName: String) {\n\n        //val date = MyDate().getCurrentDate()\n        val date = \"2023-09-17\" // Change\n\n        apiCall.getDashboardCompInfo(diningName, date).enqueue(object: Callback<DashboardCompRes> {\n            override fun onResponse(call: Call<DashboardCompRes>, response: Response<DashboardCompRes>) {\n                if (response.isSuccessful){\n                    for (i in 0..4) {\n                        //println(i)\n\n                        val nameDining = response.body()?.table?.get(i)?.Nombre\n                        val serPaid = response.body()?.table?.get(i)?.R_Pagadas\n                        val serDonated = response.body()?.table?.get(i)?.R_Donadas\n                        val totalVisits = response.body()?.table?.get(i)?.TotalVisitas\n                        val money = response.body()?.table?.get(i)?.MontoRecaudado\n                        println(nameDining)\n                        println(serPaid)\n                        println(serDonated)\n                        println(totalVisits)\n                        println(money)\n\n                    }\n                } else {\n                    println(\"Falla: ${response.code()}\")\n                    println(\"Error: ${response.errorBody()}\")\n                }\n            }\n\n            override fun onFailure(call: Call<DashboardCompRes>, t: Throwable) {\n                println(\"ERROR: ${t.localizedMessage}\")\n            }\n\n        })\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/mx/mr/platopatodos/ui/dashboard/DashboardVM.kt b/app/src/main/java/mx/mr/platopatodos/ui/dashboard/DashboardVM.kt
+--- a/app/src/main/java/mx/mr/platopatodos/ui/dashboard/DashboardVM.kt	(revision c6aaa877f647c53c4d8e3238ef78dc16513243f9)
++++ b/app/src/main/java/mx/mr/platopatodos/ui/dashboard/DashboardVM.kt	(date 1697595463665)
+@@ -35,8 +35,8 @@
+ 
+ 
+     fun getDashboardInfo(diningName: String) {
+-        //val date = MyDate().getCurrentDate()
+-        val date = "2023-09-17" // Change
++        val date = MyDate().getCurrentDate()
++//        val date = "2023-09-17" // Change
+ 
+         apiCall.getDashboardInfo(diningName, date).enqueue(object: Callback<DashboardRes> {
+ 
+@@ -70,8 +70,8 @@
+ 
+     fun getDashboardCompInfo(diningName: String) {
+ 
+-        //val date = MyDate().getCurrentDate()
+-        val date = "2023-09-17" // Change
++        val date = MyDate().getCurrentDate()
++//        val date = "2023-09-17" // Change
+ 
+         apiCall.getDashboardCompInfo(diningName, date).enqueue(object: Callback<DashboardCompRes> {
+             override fun onResponse(call: Call<DashboardCompRes>, response: Response<DashboardCompRes>) {
+Index: app/src/main/java/mx/mr/platopatodos/ui/home/HomeVM.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.mr.platopatodos.ui.home\n\nimport androidx.lifecycle.ViewModel\nimport mx.mr.platopatodos.model.ListaServiciosAPI\nimport mx.mr.platopatodos.model.RetrofitManager\nimport mx.mr.platopatodos.model.requests.ChgStatusDining\nimport mx.mr.platopatodos.model.responses.StringResponse\nimport retrofit2.Call\nimport retrofit2.Callback\nimport retrofit2.Response\n\nclass HomeVM : ViewModel() {\n\n    private val apiCall: ListaServiciosAPI = RetrofitManager.apiService\n\n    fun updateDinStatus(diningName: String){\n        val diningStatus = \"Cerrado\"\n        val requestBody = ChgStatusDining(diningName, diningStatus)\n\n        apiCall.updateDinStatus(requestBody).enqueue(object: Callback<StringResponse> {\n\n            override fun onResponse(call: Call<StringResponse>, response: Response<StringResponse>) {\n                if (response.isSuccessful) {\n                    println(\"Mensaje: El estatus ha cambiado\")\n                } else {\n                    println(\"Falla: ${response.code()}\")\n                    println(\"Error: ${response.errorBody()?.string()}\")\n                }\n            }\n\n            override fun onFailure(call: Call<StringResponse>, t: Throwable) {\n                println(\"ERROR: ${t.localizedMessage}\")\n                t.printStackTrace()\n            }\n\n        })\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/mx/mr/platopatodos/ui/home/HomeVM.kt b/app/src/main/java/mx/mr/platopatodos/ui/home/HomeVM.kt
+--- a/app/src/main/java/mx/mr/platopatodos/ui/home/HomeVM.kt	(revision c6aaa877f647c53c4d8e3238ef78dc16513243f9)
++++ b/app/src/main/java/mx/mr/platopatodos/ui/home/HomeVM.kt	(date 1697429552394)
+@@ -9,6 +9,11 @@
+ import retrofit2.Callback
+ import retrofit2.Response
+ 
++/**
++ * Home Frag ViewModel
++ * @author Héctor González Sánchez
++ */
++
+ class HomeVM : ViewModel() {
+ 
+     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n  <component name=\"VisualizationToolProject\">\n    <option name=\"state\">\n      <ProjectState>\n        <option name=\"scale\" value=\"0.8053863525390625\" />\n      </ProjectState>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision c6aaa877f647c53c4d8e3238ef78dc16513243f9)
++++ b/.idea/misc.xml	(date 1697594460224)
+@@ -9,7 +9,7 @@
+   <component name="VisualizationToolProject">
+     <option name="state">
+       <ProjectState>
+-        <option name="scale" value="0.8053863525390625" />
++        <option name="scale" value="0.7253821825459056" />
+       </ProjectState>
+     </option>
+   </component>
+Index: app/src/main/java/mx/mr/platopatodos/ui/home/HomeFrag.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.mr.platopatodos.ui.home\n\nimport android.content.Intent\nimport android.os.Bundle\nimport androidx.fragment.app.Fragment\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.Toast\nimport androidx.appcompat.app.AlertDialog\nimport androidx.fragment.app.viewModels\nimport androidx.navigation.fragment.findNavController\nimport androidx.navigation.navGraphViewModels\nimport mx.mr.platopatodos.View.MainActivity\nimport mx.mr.platopatodos.databinding.FragmentHomeBinding\nimport mx.mr.platopatodos.model.Prefs\nimport mx.mr.platopatodos.ui.assist.AssistActivity\nimport mx.mr.platopatodos.ui.login.LoginActivity\nimport mx.mr.platopatodos.ui.reg.RegActivity\n\nclass HomeFrag : Fragment() {\n\n    // Binding & ViewModel\n    private lateinit var binding: FragmentHomeBinding\n    private val viewModel: HomeVM by viewModels()\n    private lateinit var prefs: Prefs\n\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        binding = FragmentHomeBinding.inflate(layoutInflater)\n        prefs = Prefs(requireActivity())\n        return binding.root\n    }\n\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\n        super.onViewCreated(view, savedInstanceState)\n//        toRegister()\n//        toAssist()\n\n        toAssit_Register()\n\n        toMenu()\n        getLocation()\n        logout()\n    }\n\n    override fun onResume() {\n        super.onResume()\n        toAssit_Register()\n    }\n\n    private fun toAssit_Register() {\n        val isClickable = prefs.getStatus()\n\n        println(\"COSO STATUS: ${isClickable}\")\n\n        binding.cvRegister.setOnClickListener {\n            println(\"Hizo click\")\n            if (isClickable){\n                val action = HomeFragDirections.actionHomeFragToRegActivity()\n                findNavController().navigate(action)\n            } else {\n                val alert = AlertDialog.Builder(requireActivity())\n                    .setTitle(\"A V I S O\")\n                    .setMessage(\"Recuerda subir Menú\")\n                    .setCancelable(false)\n                    .setPositiveButton(\"Aceptar\", null)\n                alert.show()\n            }\n        }\n\n        binding.cvAssist.setOnClickListener {\n            println(\"Hizo click\")\n            if (isClickable){\n                val action = HomeFragDirections.actionHomeFragToAssistActivity()\n                findNavController().navigate(action)\n            } else {\n                val alert = AlertDialog.Builder(requireActivity())\n                    .setTitle(\"A V I S O\")\n                    .setMessage(\"Recuerda subir Menú\")\n                    .setCancelable(false)\n                    .setPositiveButton(\"Aceptar\", null)\n                alert.show()\n            }\n        }\n    }\n\n    private fun toAssist() {\n        binding.cvAssist.setOnClickListener {\n            println(\"Hizo click\")\n            val action = HomeFragDirections.actionHomeFragToAssistActivity()\n            findNavController().navigate(action)\n        }\n    }\n\n    private fun toRegister() {\n        binding.cvRegister.setOnClickListener {\n            println(\"Hizo click\")\n            val action = HomeFragDirections.actionHomeFragToRegActivity()\n            findNavController().navigate(action)\n        }\n    }\n\n    private fun toMenu() {\n        binding.btnStatus.setOnClickListener {\n            println(\"Hizo click\")\n            val action = HomeFragDirections.actionHomeFragToMenuActivity()\n            findNavController().navigate(action)\n        }\n    }\n\n    private fun getLocation() {\n        val location = prefs.getLocation()\n        binding.etCurrentDining.setText(\"Estas en: ${location}\")\n    }\n\n    private fun logout() {\n        binding.btnLogout.setOnClickListener{\n            println(\"Hizo click\")\n\n            val diningName = prefs.getLocation()\n            viewModel.updateDinStatus(diningName)\n\n            // Log-out\n            val intent = Intent(requireContext(), LoginActivity::class.java)\n            startActivity(intent)\n\n            val cardsViewClickable = false\n            prefs.saveStautsCV(cardsViewClickable)\n            println(\"COSO STATUS LOGOUT: ${cardsViewClickable}\")\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/mx/mr/platopatodos/ui/home/HomeFrag.kt b/app/src/main/java/mx/mr/platopatodos/ui/home/HomeFrag.kt
+--- a/app/src/main/java/mx/mr/platopatodos/ui/home/HomeFrag.kt	(revision c6aaa877f647c53c4d8e3238ef78dc16513243f9)
++++ b/app/src/main/java/mx/mr/platopatodos/ui/home/HomeFrag.kt	(date 1697429552403)
+@@ -18,6 +18,12 @@
+ import mx.mr.platopatodos.ui.login.LoginActivity
+ import mx.mr.platopatodos.ui.reg.RegActivity
+ 
++/**
++ * Home Frag View
++ * @author Héctor González Sánchez
++ */
++
++
+ class HomeFrag : Fragment() {
+ 
+     // Binding & ViewModel

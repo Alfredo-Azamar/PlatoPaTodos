@@ -18,6 +18,11 @@ import mx.mr.platopatodos.ui.assist.AssistActivity
 import mx.mr.platopatodos.ui.login.LoginActivity
 import mx.mr.platopatodos.ui.reg.RegActivity
 
+/**
+ * Home Frag View
+ * @author Héctor González Sánchez
+ */
+
 class HomeFrag : Fragment() {
 
     // Binding & ViewModel

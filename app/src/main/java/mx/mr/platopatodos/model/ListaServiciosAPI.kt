@@ -32,7 +32,7 @@ interface ListaServiciosAPI {
     fun userLogin(@Body info: LoginReq): Call<LoginRes>
 
     @Headers("Content-Type: application/json")
-    @POST("insertaMenu")
+    @PUT("insertaMenu")
     fun uploadMenu(@Body menu: MenuReq): Call<StringResponse>
 
     @Headers("Content-Type: application/json")

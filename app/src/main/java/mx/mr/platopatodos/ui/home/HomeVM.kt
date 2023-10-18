@@ -9,6 +9,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Home Frag ViewModel
+ * @author Héctor González Sánchez
+ */
+
 class HomeVM : ViewModel() {
 
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
