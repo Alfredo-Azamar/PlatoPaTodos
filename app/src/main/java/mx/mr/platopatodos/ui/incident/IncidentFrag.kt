@@ -48,10 +48,13 @@ class IncidentFrag : Fragment() {
             val diningName = prefs.getLocation()
             val issue = binding.etIssue.text.toString()
             val description = binding.etDescription.text.toString()
-
-            viewModel.insertIncident(diningName, issue, description)
-            Toast.makeText(requireActivity(), "Incidencia reportada", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+            if (issue != ""){
+                viewModel.insertIncident(diningName, issue, description)
+                Toast.makeText(requireActivity(), "Incidencia reportada", Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
+            } else{
+                Toast.makeText(requireActivity(), "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
