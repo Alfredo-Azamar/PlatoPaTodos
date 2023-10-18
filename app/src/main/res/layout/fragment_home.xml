@@ -232,7 +232,7 @@
         android:id="@+id/et_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:text="Cerrar sesión"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/main_color"

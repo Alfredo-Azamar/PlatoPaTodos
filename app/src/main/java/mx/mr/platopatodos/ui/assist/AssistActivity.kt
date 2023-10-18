@@ -4,8 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.findNavController
+import com.google.android.gms.common.moduleinstall.ModuleInstall
+import com.google.android.gms.common.moduleinstall.ModuleInstallRequest
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import mx.mr.platopatodos.databinding.ActivityAssistBinding
 import mx.mr.platopatodos.model.Prefs
 import mx.mr.platopatodos.model.QrManager
@@ -41,6 +45,7 @@ class AssistActivity : AppCompatActivity() {
             val accessType = binding.etAccessType.text.toString()
 
             viewModel.uploadAttendance(diningName, type, servings, accessType)
+            Toast.makeText(this, "Se registró la asistencia", Toast.LENGTH_SHORT).show()
             finish()
         }
     }

@@ -48,6 +48,7 @@ class MenuActivity : AppCompatActivity() {
 
             viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
             viewModel.updateDinStatus(diningName)
+            Toast.makeText(this, "El menú se ha actualizado", Toast.LENGTH_SHORT).show()
 
 
             //Clickable Component for CardViews

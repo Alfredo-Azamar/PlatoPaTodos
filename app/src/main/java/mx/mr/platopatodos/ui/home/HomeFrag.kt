@@ -66,7 +66,7 @@ class HomeFrag : Fragment() {
             } else {
                 val alert = AlertDialog.Builder(requireActivity())
                     .setTitle("A V I S O")
-                    .setMessage("Recuerda subir Menú")
+                    .setMessage("Recuerda subir el menú")
                     .setCancelable(false)
                     .setPositiveButton("Aceptar", null)
                 alert.show()
@@ -81,7 +81,7 @@ class HomeFrag : Fragment() {
             } else {
                 val alert = AlertDialog.Builder(requireActivity())
                     .setTitle("A V I S O")
-                    .setMessage("Recuerda subir Menú")
+                    .setMessage("Recuerda subir el menú")
                     .setCancelable(false)
                     .setPositiveButton("Aceptar", null)
                 alert.show()
