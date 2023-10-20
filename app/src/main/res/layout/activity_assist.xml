@@ -16,12 +16,13 @@
         android:layout_marginBottom="8dp"
         android:autoSizeMinTextSize="32sp"
         android:autoSizeTextType="uniform"
-        android:text="Asistencia"
+        android:text="@string/asistencia"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView12"
@@ -30,11 +31,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="20dp"
-        android:text="Usa el CURP o token del usuario"
+        android:text="@string/usa_el_curp_o_token_del_comensal"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_assistQR"
@@ -43,12 +45,13 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="-25dp"
         android:clickable="true"
-        android:contentDescription="escaneaQr"
+        android:contentDescription="@string/escaneaqr"
         android:src="@drawable/baseline_qr_code_scanner_24"
         app:backgroundTint="@color/white"
         app:elevation="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -67,7 +70,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        tools:ignore="VisualLintBounds">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -94,7 +98,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/prueba1" />
+                    app:srcCompat="@drawable/prueba1"
+                    android:contentDescription="@string/foto" />
 
                 <View
                     android:id="@+id/divider4"
@@ -121,8 +126,9 @@
                         android:id="@+id/et_accessType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CURP / Token"
-                        android:inputType="text" />
+                        android:hint="@string/curp_token"
+                        android:inputType="text"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -144,15 +150,16 @@
                             android:id="@+id/et_servings"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Raciones"
-                            android:inputType="numberDecimal" />
+                            android:hint="@string/raciones"
+                            android:inputType="numberDecimal"
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Spinner
                         android:id="@+id/sp_type"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
                         android:layout_weight="1"
                         android:alpha="0.8"
                         android:entries="@array/spinner_servings" />
@@ -166,7 +173,8 @@
                     android:layout_marginTop="48dp"
                     android:layout_marginRight="48dp"
                     android:backgroundTint="@color/purple_dif"
-                    android:text="Tomar asistencia" />
+                    android:text="@string/tomar_asistencia"
+                    tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
                 <TextView
                     android:id="@+id/tv_assistHelp"
@@ -174,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="32dp"
-                    android:text="¿No conoces tus datos?"
+                    android:text="@string/no_conoces_tus_datos"
                     android:textAlignment="center"
                     android:textColor="@color/purple_dif" />
 

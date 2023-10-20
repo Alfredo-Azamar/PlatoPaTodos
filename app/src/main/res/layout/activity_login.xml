@@ -59,7 +59,7 @@
                 android:layout_marginEnd="100dp"
                 android:autoSizeMinTextSize="22sp"
                 android:autoSizeTextType="uniform"
-                android:text="Bienvenido de vuelta"
+                android:text="@string/bienvenido_de_vuelta"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +86,9 @@
                     android:id="@+id/et_user"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Nombre de usuario"
-                    android:inputType="text" />
+                    android:hint="@string/nombre_de_usuario"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -109,8 +110,9 @@
                     android:id="@+id/et_passworrd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Contraseña"
-                    android:inputType="textPassword" />
+                    android:hint="@string/contrasena"
+                    android:inputType="textPassword"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -121,11 +123,12 @@
                 android:layout_marginEnd="48dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/main_color"
-                android:text="Iniciar Sesión"
+                android:text="@string/iniciar_sesion"
                 app:layout_constraintBottom_toTopOf="@+id/textView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="VisualLintButtonSize" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -134,7 +137,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="50dp"
-                android:text="¿No estás registrado?"
+                android:text="@string/no_est_s_registrado"
                 android:textColor="@color/main_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

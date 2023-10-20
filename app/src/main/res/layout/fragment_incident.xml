@@ -164,7 +164,8 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Estado del Comedor" />
+                        android:text="Estado del Comedor"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     <Button
                         android:id="@+id/btn_uploadReport"

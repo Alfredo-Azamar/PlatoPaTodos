@@ -15,12 +15,13 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="8dp"
         android:autoSizeTextType="uniform"
-        android:text="Registro de usuario"
+        android:text="@string/registro_de_usuario"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView12"
@@ -29,11 +30,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="20dp"
-        android:text="Ingresa los datos del nuevo comensal"
+        android:text="@string/mensaje_registro"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_regQR"
@@ -42,13 +44,14 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="-25dp"
         android:clickable="true"
-        android:contentDescription="escaneaQr"
+        android:contentDescription="@string/escaneaqr"
         android:src="@drawable/baseline_qr_code_scanner_24"
         app:backgroundTint="@color/white"
         app:elevation="8dp"
         app:fabSize="auto"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -66,17 +69,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        tools:ignore="VisualLintBounds">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:contentDescription="reg_form">
+            android:contentDescription="@string/reg_form">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/sec_app"
                 android:orientation="vertical"
                 android:padding="32dp">
@@ -93,8 +97,9 @@
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nombre"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/nombre"
+                        android:inputType="textPersonName"
+                        tools:ignore="VisualLintTextFieldSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -108,8 +113,9 @@
                         android:id="@+id/et_pLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Apellido paterno"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/apellido_paterno"
+                        android:inputType="textPersonName"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -123,8 +129,9 @@
                         android:id="@+id/et_mLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Apellido materno"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/apellido_materno"
+                        android:inputType="textPersonName"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -139,8 +146,9 @@
                         android:id="@+id/et_curp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CURP"
-                        android:inputType="text" />
+                        android:hint="@string/curp"
+                        android:inputType="text"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -161,15 +169,16 @@
                             android:id="@+id/et_bDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="F. de nacimiento"
-                            android:inputType="date" />
+                            android:hint="@string/f_de_nacimiento"
+                            android:inputType="date"
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Spinner
                         android:id="@+id/sp_gender"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
                         android:layout_weight="1"
                         android:alpha="0.8"
                         android:entries="@array/spinner_gender" />
@@ -189,7 +198,8 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginRight="48dp"
                     android:backgroundTint="@color/blue_dif"
-                    android:text="Registrar" />
+                    android:text="@string/registrar"
+                    tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
                 <TextView
                     android:id="@+id/tv_helpReg"
@@ -198,9 +208,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="32dp"
                     android:alpha="0.7"
-                    android:text="¿No conoces tus datos?"
+                    android:text="@string/no_conoces_tus_datos"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_dif" />
+                    android:textColor="#0277BD"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
         </ScrollView>

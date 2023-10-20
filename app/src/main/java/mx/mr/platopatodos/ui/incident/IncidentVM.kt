@@ -44,9 +44,10 @@ class IncidentVM : ViewModel() {
         })
     }
 
-    fun updateDinStatus(diningName: String) {
+    fun updateDinStatus(diningName: String, diningStatus: String) {
 
-        val diningStatus = "Cerrado"
+        // CAMBIAR ESTÁ VARIABLE, NO TIENE QUE SER CERRADO SIEMPRE
+        //val diningStatus = "Cerrado"
         val requestBody = ChgStatusDining(diningName, diningStatus)
 
         apiCall.updateDinStatus(requestBody).enqueue(object: Callback<StringResponse> {

@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toTopOf="@+id/gl_decor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintBounds">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,6 +33,7 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="79dp"
+                android:contentDescription="@string/dif_logo"
                 android:src="@drawable/logo_dif"
                 app:layout_constraintBottom_toTopOf="@id/guideline9"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +53,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_difLogo"
+                tools:ignore="TextContrastCheck"
                 tools:text='Comedor "Tres Marías"' />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -60,6 +63,7 @@
                 android:layout_marginTop="72dp"
                 android:layout_marginEnd="32dp"
                 android:clickable="true"
+                android:contentDescription="@string/actualizar_menu"
                 android:focusable="true"
                 android:src="@drawable/baseline_power_settings_new_24"
                 app:fabSize="mini"
@@ -122,8 +126,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -131,7 +135,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registrar usuario"
+                    android:text="@string/registrar_usuario"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -141,8 +145,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:alpha="0.7"
-                    android:text="Para los que vienen por primera vez"
-                    android:textSize="14sp" />
+                    android:text="@string/para_los_que_vienen_por_primera_vez"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    tools:ignore="TextContrastCheck" />
             </LinearLayout>
 
             <ImageView
@@ -151,6 +157,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:contentDescription="@string/imagen_registrar_usuario"
                 app:srcCompat="@drawable/register_logo_alt" />
 
         </LinearLayout>
@@ -187,8 +194,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -196,7 +203,7 @@
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pase de lista"
+                    android:text="@string/pase_de_lista"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -206,7 +213,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:alpha="0.7"
-                    android:text="Para aquellos que ya están registrados" />
+                    android:text="@string/para_aquellos_que_ya_est_n_registrados"
+                    android:textColor="#757575"
+                    tools:ignore="TextContrastCheck" />
             </LinearLayout>
 
             <ImageView
@@ -215,6 +224,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:contentDescription="@string/imagen_pase_de_lista"
                 app:srcCompat="@drawable/assist_logo_alt" />
         </LinearLayout>
 
@@ -232,7 +242,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Cerrar sesión"
+        android:text="@string/cerrar_sesi_n"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/main_color"
         android:textStyle="bold|italic"

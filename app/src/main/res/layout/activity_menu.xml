@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintBounds">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +35,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="8dp"
-        android:text="Menú del día"
+        android:text="@string/men_del_dia"
         android:textAlignment="viewStart"
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="34sp"
@@ -52,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:text="Llena todos los campos para subir el menú del día y que los comensales puedan verlo."
+        android:text="@string/mensaje_menu"
         android:autoSizeMinTextSize="14sp"
         android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -101,8 +102,9 @@
                     android:id="@+id/et_soup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Sopa/Arroz"
-                    android:inputType="text" />
+                    android:hint="@string/sopa_arroz"
+                    android:inputType="text"
+                    tools:ignore="VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -116,8 +118,9 @@
                     android:id="@+id/et_mainCourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Plato fuerte"
-                    android:inputType="text" />
+                    android:hint="@string/plato_fuerte"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -131,8 +134,9 @@
                     android:id="@+id/et_carbs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Pan/Tortilla"
-                    android:inputType="text" />
+                    android:hint="@string/pan_tortilla"
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -146,8 +150,10 @@
                     android:id="@+id/et_water"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Agua del día"
-                    android:inputType="text" />
+                    android:hint="@string/agua_del_dia"
+                    android:inputType="text"
+                    android:textColorHint="#8D6E63"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -161,8 +167,10 @@
                     android:id="@+id/et_beansSauce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Frijoles/Salsa"
-                    android:inputType="text" />
+                    android:hint="@string/frijoles_salsa"
+                    android:inputType="text"
+                    android:textColorHint="#8D6E63"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -174,7 +182,8 @@
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/purple_dif"
-                android:text="Subir menú" />
+                android:text="@string/subir_menu"
+                tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
     </ScrollView>
 

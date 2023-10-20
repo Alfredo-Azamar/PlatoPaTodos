@@ -79,7 +79,7 @@ class IncidentFrag : Fragment() {
                     .setMessage("¿Desea cambiar el estado del comedor?")
                     .setCancelable(false)
                     .setPositiveButton("Sí"){ dialogInterface: DialogInterface, i: Int ->
-                        viewModel.updateDinStatus(diningName)
+                        viewModel.updateDinStatus(diningName, "Cerrado")
                         prefs.saveStautsCV(false)
                         binding.swClosure.isChecked = prefs.getStatus()
                         binding.swClosure.text = "El comedor está: Cerrado"
@@ -92,10 +92,10 @@ class IncidentFrag : Fragment() {
                 if (prefs.getUpMenu()){
 //                    binding.swClosure.isChecked = prefs.getStatus()
                     binding.swClosure.text = "El comedor está: Abierto"
-                    viewModel.updateDinStatus(diningName)
+                    viewModel.updateDinStatus(diningName, "Abierto")
                     prefs.saveStautsCV(true)
                 }
-//                binding.swClosure.isChecked = prefs.getStatus()
+                binding.swClosure.isChecked = prefs.getStatus()
             }
         }
     }
