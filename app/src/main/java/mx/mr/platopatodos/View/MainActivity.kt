@@ -30,11 +30,6 @@ class MainActivity : AppCompatActivity() {
         initUI()
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        prefs.wipe()
-//    }
-
     private fun initUI() {
         val navigationHost = supportFragmentManager.findFragmentById(R.id.fc_main) as NavHostFragment
         // En esta madre estoy seteando el click en falso (hay que ver si se setea en otro lado)

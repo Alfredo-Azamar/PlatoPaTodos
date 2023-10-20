@@ -39,6 +39,9 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
                 viewModel.onNavigationHandled()
+            } else {
+                binding.tipUser.error = "Usuario incorrecto"
+                binding.tipPassword.error = "Contraseña incorrecta"
             }
         })
 
@@ -52,13 +55,12 @@ class LoginActivity : AppCompatActivity() {
 
             val user = binding.etUser.text.toString()
             val password = binding.etPassworrd.text.toString()
-            viewModel.userLogin(user, password)
 
-//            if (user != "" && password!= "" ){
-//                viewModel.userLogin(user, password)
-//            } else {
-//                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
-//            }
+            if (user != "" && password != "" ){
+                viewModel.userLogin(user, password)
+            } else {
+                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/tip_User"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="32dp"
@@ -75,6 +75,7 @@
                 android:layout_marginEnd="32dp"
                 android:alpha="0.7"
                 app:endIconMode="clear_text"
+                app:errorContentDescription="Usuario incorrecto"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -92,7 +93,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
+                android:id="@+id/tip_Password"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="32dp"
@@ -101,9 +102,10 @@
                 android:alpha="0.7"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
+                app:errorContentDescription="Contraseña incorrecta"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tip_User"
                 app:startIconDrawable="@drawable/baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -121,26 +123,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="95dp"
                 android:backgroundTint="@color/main_color"
                 android:text="@string/iniciar_sesion"
-                app:layout_constraintBottom_toTopOf="@+id/textView4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="50dp"
-                android:text="@string/no_est_s_registrado"
-                android:textColor="@color/main_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
