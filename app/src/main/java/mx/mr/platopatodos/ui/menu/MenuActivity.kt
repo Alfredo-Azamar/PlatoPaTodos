@@ -33,7 +33,6 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         uploadMenu()
-//        setupListeners()
     }
 
     private fun uploadMenu() {
@@ -46,23 +45,39 @@ class MenuActivity : AppCompatActivity() {
             val water = binding.etWater.text.toString()
             val beansSauce = binding.etBeansSauce.text.toString()
 
-            viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
-            viewModel.updateDinStatus(diningName)
-            Toast.makeText(this, "El menú se ha actualizado", Toast.LENGTH_SHORT).show()
+
+            if (soup != "" ||
+                mainCourse != "" ||
+                carbs != "" ||
+                water != "" ||
+                beansSauce != ""){
+
+                viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
+                viewModel.updateDinStatus(diningName)
+                Toast.makeText(this, "El menú se ha actualizado", Toast.LENGTH_SHORT).show()
 
 
-            //Clickable Component for CardViews
-            prefs.saveStautsCV(true)
-            prefs.saveUpMenu(true)
-            println("SSS ${prefs.getUpMenu()}")
-            finish()
+                //Clickable Component for CardViews
+                prefs.saveStautsCV(true)
+                prefs.saveUpMenu(true)
+                println("SSS ${prefs.getUpMenu()}")
+                finish()
+            } else {
+                Toast.makeText(this, "Llena los campos", Toast.LENGTH_SHORT).show()
+            }
+
+//            viewModel.uploadMenu(diningName, soup, mainCourse, carbs, water, beansSauce)
+//            viewModel.updateDinStatus(diningName)
+//            Toast.makeText(this, "El menú se ha actualizado", Toast.LENGTH_SHORT).show()
+//
+//
+//            //Clickable Component for CardViews
+//            prefs.saveStautsCV(true)
+//            prefs.saveUpMenu(true)
+//            println("SSS ${prefs.getUpMenu()}")
+//            finish()
         }
     }
 
-//    private fun setupListeners() {
-//        viewModel.currentStatus.observe(this) {status ->
-//            prefs.saveStautsCV(status)
-//            println(status)
-//        }
-//    }
+
 }

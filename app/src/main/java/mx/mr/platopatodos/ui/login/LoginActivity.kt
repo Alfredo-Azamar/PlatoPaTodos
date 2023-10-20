@@ -39,14 +39,18 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
                 viewModel.onNavigationHandled()
-            } else {
-                binding.tipUser.error = "Usuario incorrecto"
-                binding.tipPassword.error = "Contraseña incorrecta"
             }
         })
 
         viewModel.currentLocation.observe(this) { location ->
             prefs.saveLocation(location)
+        }
+
+        viewModel.responseAPI.observe(this) { itslogged ->
+            if (!itslogged) {
+                binding.tipUser.error = "Usuario incorrecto"
+                binding.tipPassword.error = "Contraseña incorrecta"
+            }
         }
     }
 

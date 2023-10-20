@@ -26,10 +26,10 @@ class LoginVM : ViewModel() {
     val currentLocation: LiveData<String>
         get() = _currentLocation
 
-//    private val _responseAPI = MutableLiveData<Boolean>()
-//
-//    val responseAPI: LiveData<Boolean>
-//        get() = _responseAPI
+    private val _responseAPI = MutableLiveData<Boolean>()
+
+    val responseAPI: LiveData<Boolean>
+        get() = _responseAPI
 
     // Retrofit Object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
@@ -43,11 +43,11 @@ class LoginVM : ViewModel() {
                     val location = response.body()?.table?.get(0)?.Nombre
                     _currentLocation.postValue(location.toString())
                     _navigateToNewAct.postValue(true)
-//                    _responseAPI.postValue(true)
+                    _responseAPI.postValue(true)
                 } else {
                     println("Falla: ${response.code()}")
                     println("Error: ${response.errorBody()}")
-                    _navigateToNewAct.postValue(false)
+                    _responseAPI.postValue(false)
                 }
 
             }
