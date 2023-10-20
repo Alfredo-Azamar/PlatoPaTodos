@@ -1,5 +1,6 @@
 package mx.mr.platopatodos.ui.home
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -42,11 +43,8 @@ class HomeFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        toRegister()
-//        toAssist()
 
         toAssit_Register()
-
         toMenu()
         getLocation()
         logout()
@@ -109,16 +107,33 @@ class HomeFrag : Fragment() {
 
     private fun logout() {
         binding.etLogout.setOnClickListener{
-            println("Hizo click")
-
+//            println("Hizo click")
             val diningName = prefs.getLocation()
-            viewModel.updateDinStatus(diningName)
 
-            prefs.wipe()
+            val alert = AlertDialog.Builder(requireActivity())
+                .setTitle("A V I S O")
+                .setMessage("¿Desea salir de la app?")
+                .setCancelable(false)
+                .setPositiveButton("Sí"){ dialogInterface: DialogInterface, i: Int ->
+                    viewModel.updateDinStatus(diningName)
+                    prefs.saveStautsCV(false)
+                    prefs.wipe()
+                    //Log-out
+                    val intent = Intent(requireContext(), LoginActivity::class.java)
+                    startActivity(intent)
+                }
+                .setNegativeButton("No", null)
+            alert.show()
+
+
+
+//            viewModel.updateDinStatus(diningName)
+//
+//            prefs.wipe()
 
             // Log-out
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(requireContext(), LoginActivity::class.java)
+//            startActivity(intent)
         }
     }
 }
