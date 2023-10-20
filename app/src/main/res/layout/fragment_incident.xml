@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintBounds">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="24dp"
                 android:autoSizeTextType="uniform"
-                android:text="Reporte de incidentes"
+                android:text="@string/reporte_de_incidentes"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -66,6 +67,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:contentDescription="@string/incidentimage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -100,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
-                        android:text="Asunto"
+                        android:text="@string/asunto"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -117,8 +119,10 @@
                             android:id="@+id/et_issue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Ingrese el motivo del incidente"
-                            android:inputType="text" />
+                            android:hint="@string/ingrese_el_motivo_del_incidente"
+                            android:inputType="text"
+                            android:textColorHint="#757575"
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -127,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
-                        android:text="Descripción"
+                        android:text="@string/descripcion"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -146,23 +150,21 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top"
-                            android:hint="Describa lo sucedido"
+                            android:hint="@string/describa_lo_sucedido"
                             android:inputType="textMultiLine"
-                            android:lines="6" />
+                            android:lines="6"
+                            android:textColorHint="#757575"
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:id="@+id/et_closure"
+                    <Switch
+                        android:id="@+id/sw_closure"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="Cierre Parcial"
-                        android:textColor="@color/main_color"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic" />
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Estado del Comedor" />
 
                     <Button
                         android:id="@+id/btn_uploadReport"
@@ -172,7 +174,8 @@
                         android:layout_marginEnd="48dp"
                         android:layout_marginBottom="32dp"
                         android:backgroundTint="@color/purple_dif"
-                        android:text="@string/generar_reporte" />
+                        android:text="@string/generar_reporte"
+                        tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
                 </LinearLayout>
             </ScrollView>

@@ -22,12 +22,6 @@ import retrofit2.Response
 
 class MenuVM : ViewModel() {
 
-    // Preferences (Status)
-//    private val _currentStatus = MutableLiveData<Boolean>()
-//
-//    val currentStatus: LiveData<Boolean>
-//        get() = _currentStatus
-
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
@@ -42,7 +36,6 @@ class MenuVM : ViewModel() {
             override fun onResponse(call: Call<StringResponse>, response: Response<StringResponse>) {
                 if(response.isSuccessful) {
                     println("Mensaje: ${response.body()}")
-//                    _currentStatus.postValue(true)
                 } else {
                     println("Mensaje: ${requestBody}")
                 }

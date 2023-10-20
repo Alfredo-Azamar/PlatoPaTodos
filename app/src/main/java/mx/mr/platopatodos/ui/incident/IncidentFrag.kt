@@ -1,19 +1,18 @@
 package mx.mr.platopatodos.ui.incident
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import mx.mr.platopatodos.R
 import mx.mr.platopatodos.databinding.FragmentIncidentBinding
 import mx.mr.platopatodos.model.Prefs
-import mx.mr.platopatodos.ui.incident.IncidentVM
 
 /**
  * Incident Frag View
@@ -42,6 +41,17 @@ class IncidentFrag : Fragment() {
         changeStatus()
     }
 
+    @SuppressLint("SetTextI18n")
+    override fun onResume() {
+        super.onResume()
+        binding.swClosure.isChecked = prefs.getStatus()
+        if (binding.swClosure.isChecked){
+            binding.swClosure.text = "El comedor está: Abierto"
+        } else {
+            binding.swClosure.text = "El comedor está: Cerrado"
+        }
+    }
+
     private fun insertIncident() {
         binding.btnUploadReport.setOnClickListener {
 
@@ -60,12 +70,33 @@ class IncidentFrag : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun changeStatus() {
-        binding.etClosure.setOnClickListener {
+        binding.swClosure.setOnClickListener {
             val diningName = prefs.getLocation()
-            viewModel.updateDinStatus(diningName)
-            val cardsViewClickable = false
-            prefs.saveStautsCV(cardsViewClickable)
-            binding.etClosure.text = "Cerrado!"
+            if (prefs.getStatus()) {
+//                binding.swClosure.isChecked = prefs.getStatus()
+                val alert = AlertDialog.Builder(requireActivity())
+                    .setTitle("A V I S O")
+                    .setMessage("¿Desea cambiar el estado del comedor?")
+                    .setCancelable(false)
+                    .setPositiveButton("Sí"){ dialogInterface: DialogInterface, i: Int ->
+                        viewModel.updateDinStatus(diningName)
+                        prefs.saveStautsCV(false)
+                        binding.swClosure.isChecked = prefs.getStatus()
+                        binding.swClosure.text = "El comedor está: Cerrado"
+                    }
+                    .setNegativeButton("No"){ dialogInterface: DialogInterface, i: Int ->
+                        binding.swClosure.isChecked = prefs.getStatus()
+                    }
+                alert.show()
+            } else {
+                if (prefs.getUpMenu()){
+//                    binding.swClosure.isChecked = prefs.getStatus()
+                    binding.swClosure.text = "El comedor está: Abierto"
+                    viewModel.updateDinStatus(diningName)
+                    prefs.saveStautsCV(true)
+                }
+//                binding.swClosure.isChecked = prefs.getStatus()
+            }
         }
     }
 

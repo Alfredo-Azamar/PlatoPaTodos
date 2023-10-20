@@ -26,5 +26,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="generar_reporte">Generar reporte</string>
+    <string name="reporte_de_incidentes">Reporte de incidentes</string>
+    <string name="incidentimage">incidentImage</string>
+    <string name="asunto">Asunto</string>
+    <string name="descripcion">Descripción</string>
+    <string name="describa_lo_sucedido">Describa lo sucedido</string>
+    <string name="ingrese_el_motivo_del_incidente">Ingrese el motivo del incidente</string>
 
 </resources>

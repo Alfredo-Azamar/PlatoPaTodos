@@ -18,6 +18,8 @@ class Prefs(val context: Context) {
     val SHARED_STATUS_CV = "Status"
     // Login status
     val SHARED_LOG_KEY = "Logkey"
+    // Menu uploaded
+    val SHARED_MENU = "MenuUploaded"
 
     // Prefs DB mode
     val storage = context.getSharedPreferences(SHARED_NAME, 0)
@@ -26,6 +28,7 @@ class Prefs(val context: Context) {
     fun saveLocation(name: String){
         storage.edit().putString(SHARED_LOCATION, name).apply()
     }
+
     // Save current status for clickable items
     fun saveStautsCV(status: Boolean){
         storage.edit().putBoolean(SHARED_STATUS_CV, status).apply()
@@ -34,6 +37,11 @@ class Prefs(val context: Context) {
     // Save log-in key
     fun saveLogin(loginStatus: Boolean) {
         storage.edit().putBoolean(SHARED_LOG_KEY, loginStatus).apply()
+    }
+
+    // Save uploaded menu
+    fun saveUpMenu(menuStatus: Boolean) {
+        storage.edit().putBoolean(SHARED_MENU, menuStatus).apply()
     }
 
     // Get current dining location
@@ -50,6 +58,12 @@ class Prefs(val context: Context) {
     fun getLogin(): Boolean {
         return storage.getBoolean(SHARED_LOG_KEY, false)
     }
+
+    // Get uploaded menu
+    fun getUpMenu(): Boolean {
+        return storage.getBoolean(SHARED_MENU, false)
+    }
+
 
     // Delete all current preferences
     fun wipe() {

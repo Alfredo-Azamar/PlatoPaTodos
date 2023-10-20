@@ -52,8 +52,9 @@ class MenuActivity : AppCompatActivity() {
 
 
             //Clickable Component for CardViews
-            val cardsViewClickable = true
-            prefs.saveStautsCV(cardsViewClickable)
+            prefs.saveStautsCV(true)
+            prefs.saveUpMenu(true)
+            println("SSS ${prefs.getUpMenu()}")
             finish()
         }
     }

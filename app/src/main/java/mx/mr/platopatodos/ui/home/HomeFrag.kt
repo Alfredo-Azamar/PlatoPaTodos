@@ -110,18 +110,15 @@ class HomeFrag : Fragment() {
     private fun logout() {
         binding.etLogout.setOnClickListener{
             println("Hizo click")
-            prefs.wipe()
 
             val diningName = prefs.getLocation()
             viewModel.updateDinStatus(diningName)
 
+            prefs.wipe()
+
             // Log-out
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
-
-            //val cardsViewClickable = false
-            //prefs.saveStautsCV(cardsViewClickable)
-            //println("COSO STATUS LOGOUT: ${cardsViewClickable}")
         }
     }
 }
