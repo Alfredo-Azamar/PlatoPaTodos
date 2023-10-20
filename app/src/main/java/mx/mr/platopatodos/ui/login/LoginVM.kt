@@ -33,7 +33,6 @@ class LoginVM : ViewModel() {
         val requestBody = LoginReq(username, password)
 
         apiCall.userLogin(requestBody).enqueue(object: Callback<LoginRes> {
-
             override fun onResponse(call: Call<LoginRes>, response: Response<LoginRes>) {
                 if (response.isSuccessful) {
                     val location = response.body()?.table?.get(0)?.Nombre

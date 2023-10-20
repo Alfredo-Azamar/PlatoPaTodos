@@ -52,13 +52,13 @@ class LoginActivity : AppCompatActivity() {
 
             val user = binding.etUser.text.toString()
             val password = binding.etPassworrd.text.toString()
+            viewModel.userLogin(user, password)
 
-            if (user != "" && password!= "" ){
-                viewModel.userLogin(user, password)
-            } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
-            }
-//            viewModel.userLogin(user, password)
+//            if (user != "" && password!= "" ){
+//                viewModel.userLogin(user, password)
+//            } else {
+//                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 
