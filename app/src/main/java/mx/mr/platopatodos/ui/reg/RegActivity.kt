@@ -68,18 +68,28 @@ class RegActivity : AppCompatActivity() {
     }
 
     private fun uploadCustomer() {
+
+        val minDate = 1920
+        val maxDate = 2023
+
         binding.btnUploadCostumer.setOnClickListener {
 
+            val bDate2: String
+
             val name = binding.etName.text.toString()
-            val p_lastName = binding.etPLastName.text.toString()
-            val m_lastName = binding.etMLastName.text.toString()
+            val pLastName = binding.etPLastName.text.toString()
+            val mLastName = binding.etMLastName.text.toString()
             val curp = binding.etCurp.text.toString()
             val bDate = binding.etBDate.text.toString()
             val gender = binding.spGender.selectedItem.toString()
             val vulSituation:Array<String> = getCond()
 
+//            if (bDate.toInt() in minDate..maxDate){
+//                bDate2= binding.etBDate.text.toString()
+//            }
+
             if (curp != ""){
-                viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
+                viewModel.uploadCostumer(name, pLastName, mLastName, curp, bDate, gender, vulSituation) {success ->
                     if (success) {
                         val token = viewModel.customerToken.value
                         if (!token.isNullOrBlank()){

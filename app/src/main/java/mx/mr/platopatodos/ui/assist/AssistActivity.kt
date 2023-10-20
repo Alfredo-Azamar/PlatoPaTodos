@@ -39,7 +39,7 @@ class AssistActivity : AppCompatActivity() {
     private fun uploadAttendance() {
         binding.btnUploadAtten.setOnClickListener {
 
-//            binding.etServings.setText(0) ONRESUME
+            binding.etServings.setText("0")
 
             val diningName = prefs.getLocation()
             val type = binding.spType.selectedItem.toString()
@@ -54,9 +54,7 @@ class AssistActivity : AppCompatActivity() {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             }
 
-//            viewModel.uploadAttendance(diningName, type, servings, accessType)
-//            Toast.makeText(this, "Se registró la asistencia", Toast.LENGTH_SHORT).show()
-//            finish()
+
         }
     }
 
