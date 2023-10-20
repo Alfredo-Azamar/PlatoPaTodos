@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/nombre"
                         android:inputType="textPersonName"
-                        tools:ignore="VisualLintTextFieldSize" />
+                        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -136,9 +136,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:alpha="0.8"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="18"
                     app:errorEnabled="true"
                     app:startIconDrawable="@drawable/baseline_fingerprint_24">
 

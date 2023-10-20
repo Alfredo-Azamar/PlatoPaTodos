@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import mx.mr.platopatodos.R
@@ -52,7 +53,12 @@ class LoginActivity : AppCompatActivity() {
             val user = binding.etUser.text.toString()
             val password = binding.etPassworrd.text.toString()
 
-            viewModel.userLogin(user, password)
+            if (user != "" && password!= "" ){
+                viewModel.userLogin(user, password)
+            } else {
+                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            }
+//            viewModel.userLogin(user, password)
         }
     }
 

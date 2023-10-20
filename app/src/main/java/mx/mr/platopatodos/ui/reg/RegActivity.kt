@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
@@ -77,22 +78,43 @@ class RegActivity : AppCompatActivity() {
             val gender = binding.spGender.selectedItem.toString()
             val vulSituation:Array<String> = getCond()
 
-            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
-                if (success) {
-                    val token = viewModel.customerToken.value
-                    if (!token.isNullOrBlank()){
-                        val alert = AlertDialog.Builder(this)
-                            .setTitle("T O K E N")
-                            .setMessage("Se le proporciona el siguiente token: ${token}")
-                            .setCancelable(false)
-                            .setPositiveButton("Aceptar"){_, _ ->
-                                finish()
-                            }
-                        alert.show()
-                    } else {
-                        println("ERROR")
+            if (curp != ""){
+                viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
+                    if (success) {
+                        val token = viewModel.customerToken.value
+                        if (!token.isNullOrBlank()){
+                            val alert = AlertDialog.Builder(this)
+                                .setTitle("T O K E N")
+                                .setMessage("Se le proporciona el siguiente token: ${token}")
+                                .setCancelable(false)
+                                .setPositiveButton("Aceptar"){_, _ ->
+                                    finish()
+                                }
+                            alert.show()
+                        }
+//                        else {
+//                            println("ERROR")
+//                        }
                     }
                 }
+//            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
+//                if (success) {
+//                    val token = viewModel.customerToken.value
+//                    if (!token.isNullOrBlank()){
+//                        val alert = AlertDialog.Builder(this)
+//                            .setTitle("T O K E N")
+//                            .setMessage("Se le proporciona el siguiente token: ${token}")
+//                            .setCancelable(false)
+//                            .setPositiveButton("Aceptar"){_, _ ->
+//                                finish()
+//                            }
+//                        alert.show()
+//                    } else {
+//                        println("ERROR")
+//                    }
+//                }
+            } else {
+                Toast.makeText(this, "Llena los campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
