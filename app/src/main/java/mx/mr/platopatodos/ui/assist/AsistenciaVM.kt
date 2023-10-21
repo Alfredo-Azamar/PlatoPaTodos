@@ -20,7 +20,7 @@ class AsistenciaVM : ViewModel() {
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
     fun uploadAttendance(diningName: String, type: String, servings: Int,
-                         accessType: String) {
+                         accessType: String, callback: (Boolean) -> Unit) {
 
         val date = MyDate()
         val requestBody = AssistReq(diningName, type, servings, date.getCurrentDate(), accessType)
@@ -30,16 +30,19 @@ class AsistenciaVM : ViewModel() {
             override fun onResponse(call: Call<StringResponse>, response: Response<StringResponse>) {
                 if(response.isSuccessful) {
                     println("Mensaje: ${response.body()}")
+                    callback(true)
                 } else {
                     println("Falla: ${response.code()}")
                     println("Date: ${date.getCurrentDate()}")
                     println("Error: ${response.errorBody()?.string()}")
+                    callback(false)
                 }
             }
 
             override fun onFailure(call: Call<StringResponse>, t: Throwable) {
                 println("ERROR: ${t.localizedMessage}")
                 t.printStackTrace()
+                callback(false)
             }
         })
     }

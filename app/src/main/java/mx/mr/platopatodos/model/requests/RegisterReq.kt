@@ -1,7 +1,6 @@
 package mx.mr.platopatodos.model.requests
 
 import com.google.gson.annotations.SerializedName
-import mx.mr.platopatodos.model.responses.vulCondItem
 
 /**
  * Customer's registration Request Model
@@ -13,7 +12,7 @@ data class RegisterReq(
     @SerializedName("apellidoP") var p_lastName: String,
     @SerializedName("apellidoM") var m_lastName: String,
     @SerializedName("curp") var curp: String,
-    @SerializedName("fechaNacim") var bDate: String,
+    @SerializedName("fechaNacim") var bDate: Int,
     @SerializedName("sexo") var gender: String,
     @SerializedName("nombreCond") var vulSituation: Array<String>
 )

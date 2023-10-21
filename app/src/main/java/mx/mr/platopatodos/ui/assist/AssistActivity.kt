@@ -6,10 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.navigation.findNavController
-import com.google.android.gms.common.moduleinstall.ModuleInstall
-import com.google.android.gms.common.moduleinstall.ModuleInstallRequest
-import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import mx.mr.platopatodos.databinding.ActivityAssistBinding
 import mx.mr.platopatodos.model.Prefs
 import mx.mr.platopatodos.model.QrManager
@@ -39,22 +35,39 @@ class AssistActivity : AppCompatActivity() {
     private fun uploadAttendance() {
         binding.btnUploadAtten.setOnClickListener {
 
-            binding.etServings.setText("0")
-
             val diningName = prefs.getLocation()
             val type = binding.spType.selectedItem.toString()
-            val servings = binding.etServings.text.toString().toInt()
-            val accessType = binding.etAccessType.text.toString()
+            val servingsTxt = binding.etServings.text.toString()
+            val accessType = binding.etAccessType.text.toString().trim()
 
-            if (accessType != ""){
-                viewModel.uploadAttendance(diningName, type, servings, accessType)
-                Toast.makeText(this, "Se registró la asistencia", Toast.LENGTH_SHORT).show()
-                finish()
+//            if (servings == "" || servings == "."){
+//                binding.etServings.setText("0")
+//                println(servings)
+//            }
+
+            val servings = servingsTxt.toDoubleOrNull() ?:0.0
+
+            if (accessType.length == 5 || accessType.length == 18) {
+                if (servings.toInt() in 1 .. 5) {
+                    viewModel.uploadAttendance(diningName, type, servings.toInt(), accessType) { success ->
+                        if (success) {
+                            Toast.makeText(this, "Se registró la asistencia", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "El Comensal no está registrado",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "El número de Raciones es incorrecto", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "El Token o CURP son incorrectos", Toast.LENGTH_SHORT).show()
             }
-
-
         }
     }
 

@@ -24,9 +24,10 @@ class RegistroVM : ViewModel() {
     val vulCondList = MutableLiveData<List<vulCondItem>>()
     var customerToken = MutableLiveData<String>()
 
-    fun uploadCostumer(name: String, p_lastName: String, m_lastName: String,
-                       curp: String, bDate: String, gender: String,
-                       vulSituation: Array<String>, callback: (Boolean) -> Unit) {
+    fun uploadCostumer(
+        name: String, p_lastName: String, m_lastName: String,
+        curp: String, bDate: Int, gender: String,
+        vulSituation: Array<String>, callback: (Boolean) -> Unit) {
 
         val requestBody = RegisterReq(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation)
 

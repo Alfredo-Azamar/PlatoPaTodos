@@ -34,7 +34,7 @@ class LoginVM : ViewModel() {
     // Retrofit Object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
-    fun userLogin(username: String, password: String) {
+    fun userLogin(username: String, password: String, callback: (Boolean) -> Unit) {
         val requestBody = LoginReq(username, password)
 
         apiCall.userLogin(requestBody).enqueue(object: Callback<LoginRes> {
@@ -43,17 +43,20 @@ class LoginVM : ViewModel() {
                     val location = response.body()?.table?.get(0)?.Nombre
                     _currentLocation.postValue(location.toString())
                     _navigateToNewAct.postValue(true)
-                    _responseAPI.postValue(true)
+                    callback(true)
+//                    _responseAPI.postValue(true)
                 } else {
                     println("Falla: ${response.code()}")
                     println("Error: ${response.errorBody()}")
-                    _responseAPI.postValue(false)
+                    callback(false)
+//                    _responseAPI.postValue(false)
                 }
 
             }
 
             override fun onFailure(call: Call<LoginRes>, t: Throwable) {
                 println("ERROR: ${t.localizedMessage}")
+                callback(false)
             }
 
         })

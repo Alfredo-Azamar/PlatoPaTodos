@@ -55,7 +55,7 @@
     <string name="mensaje_menu">Llena todos los campos para subir el menú del día y que los comensales puedan verlo.</string>
     <string name="reg_form">reg_form</string>
     <string name="registrar">Registrar</string>
-    <string name="f_de_nacimiento">F. de nacimiento</string>
+    <string name="f_de_nacimiento">Año de nacimiento</string>
     <string name="curp">CURP</string>
     <string name="apellido_materno">Apellido materno</string>
     <string name="nombre">Nombre</string>

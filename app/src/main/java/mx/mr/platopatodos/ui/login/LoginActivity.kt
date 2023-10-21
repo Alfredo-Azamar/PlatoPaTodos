@@ -3,15 +3,12 @@ package mx.mr.platopatodos.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import mx.mr.platopatodos.R
 import mx.mr.platopatodos.View.MainActivity
 import mx.mr.platopatodos.databinding.ActivityLoginBinding
 import mx.mr.platopatodos.model.Prefs
-import mx.mr.platopatodos.model.QrManager
 
 class LoginActivity : AppCompatActivity() {
 
@@ -46,12 +43,12 @@ class LoginActivity : AppCompatActivity() {
             prefs.saveLocation(location)
         }
 
-        viewModel.responseAPI.observe(this) { itslogged ->
-            if (!itslogged) {
-                binding.tipUser.error = "Usuario incorrecto"
-                binding.tipPassword.error = "Contraseña incorrecta"
-            }
-        }
+//        viewModel.responseAPI.observe(this) { itslogged ->
+//            if (!itslogged) {
+//                binding.tipUser.error = "Usuario incorrecto"
+//                binding.tipPassword.error = "Contraseña incorrecta"
+//            }
+//        }
     }
 
     private fun login() {
@@ -61,7 +58,12 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.etPassworrd.text.toString()
 
             if (user != "" && password != "" ){
-                viewModel.userLogin(user, password)
+                viewModel.userLogin(user, password) {success ->
+                    if (!success){
+                        binding.tipUser.error = "Usuario incorrecto"
+                        binding.tipPassword.error = "Contraseña incorrecta"
+                    }
+                }
             } else {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             }

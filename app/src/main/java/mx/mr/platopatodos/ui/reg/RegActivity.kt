@@ -17,6 +17,7 @@ import mx.mr.platopatodos.model.vulCondAdapter
 /**
  * Registro View
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class RegActivity : AppCompatActivity() {
@@ -74,55 +75,45 @@ class RegActivity : AppCompatActivity() {
 
         binding.btnUploadCostumer.setOnClickListener {
 
-            val bDate2: String
-
             val name = binding.etName.text.toString()
             val pLastName = binding.etPLastName.text.toString()
             val mLastName = binding.etMLastName.text.toString()
-            val curp = binding.etCurp.text.toString()
-            val bDate = binding.etBDate.text.toString()
+            val curp = binding.etCurp.text.toString().trim()
+            val bDateTxt = binding.etBDate.text.toString()
             val gender = binding.spGender.selectedItem.toString()
-            val vulSituation:Array<String> = getCond()
+            val vulSituation: Array<String> = getCond()
 
-//            if (bDate.toInt() in minDate..maxDate){
-//                bDate2= binding.etBDate.text.toString()
-//            }
+            if (bDateTxt.isNotEmpty()) {
+                val bDate = bDateTxt.toInt()
+                if (curp.length == 18) {
 
-            if (curp != ""){
-                viewModel.uploadCostumer(name, pLastName, mLastName, curp, bDate, gender, vulSituation) {success ->
-                    if (success) {
-                        val token = viewModel.customerToken.value
-                        if (!token.isNullOrBlank()){
-                            val alert = AlertDialog.Builder(this)
-                                .setTitle("T O K E N")
-                                .setMessage("Se le proporciona el siguiente token: ${token}")
-                                .setCancelable(false)
-                                .setPositiveButton("Aceptar"){_, _ ->
-                                    finish()
+                    if (bDate in minDate..maxDate) {
+                            //Poner el campo de vulSituation en "No Aplica"
+                            viewModel.uploadCostumer(
+                                name, pLastName, mLastName, curp,
+                                bDate, gender, vulSituation
+                            ) { success ->
+                                if (success) {
+                                    val token = viewModel.customerToken.value
+                                    if (!token.isNullOrBlank()) {
+                                        val alert = AlertDialog.Builder(this)
+                                            .setTitle("T O K E N")
+                                            .setMessage("Se le proporciona el siguiente token: ${token}")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Aceptar") { _, _ ->
+                                                finish()
+                                            }
+                                        alert.show()
+                                    }
                                 }
-                            alert.show()
-                        }
-//                        else {
-//                            println("ERROR")
-//                        }
+                            }
+                    } else {
+                        Toast.makeText(this, "Año de Nacimiento inválido", Toast.LENGTH_SHORT)
+                            .show()
                     }
+                } else {
+                    Toast.makeText(this, "CURP incorrecta", Toast.LENGTH_SHORT).show()
                 }
-//            viewModel.uploadCostumer(name, p_lastName, m_lastName, curp, bDate, gender, vulSituation) {success ->
-//                if (success) {
-//                    val token = viewModel.customerToken.value
-//                    if (!token.isNullOrBlank()){
-//                        val alert = AlertDialog.Builder(this)
-//                            .setTitle("T O K E N")
-//                            .setMessage("Se le proporciona el siguiente token: ${token}")
-//                            .setCancelable(false)
-//                            .setPositiveButton("Aceptar"){_, _ ->
-//                                finish()
-//                            }
-//                        alert.show()
-//                    } else {
-//                        println("ERROR")
-//                    }
-//                }
             } else {
                 Toast.makeText(this, "Llena los campos", Toast.LENGTH_SHORT).show()
             }

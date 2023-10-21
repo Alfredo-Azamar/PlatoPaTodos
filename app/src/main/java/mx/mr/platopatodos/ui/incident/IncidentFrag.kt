@@ -56,9 +56,10 @@ class IncidentFrag : Fragment() {
         binding.btnUploadReport.setOnClickListener {
 
             val diningName = prefs.getLocation()
-            val issue = binding.etIssue.text.toString()
-            val description = binding.etDescription.text.toString()
-            if (issue != ""){
+            val issue = binding.etIssue.text.toString().trim()
+            val description = binding.etDescription.text.toString().trim()
+
+            if (issue.isNotEmpty()){
                 viewModel.insertIncident(diningName, issue, description)
                 Toast.makeText(requireActivity(), "Incidencia reportada", Toast.LENGTH_SHORT).show()
                 findNavController().navigateUp()
