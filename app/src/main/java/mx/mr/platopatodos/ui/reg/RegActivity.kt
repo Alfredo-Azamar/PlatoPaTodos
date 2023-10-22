@@ -111,7 +111,9 @@ class RegActivity : AppCompatActivity() {
                 if (curp.length == 18) {
 
                     if (bDate in minDate..maxDate) {
-                            //Poner el campo de vulSituation en "No Aplica"
+                        if(adapter?.selectedConditions?.isEmpty() == true) {
+                            adapter?.selectedConditions?.add("No Aplica")
+                        }
                             viewModel.uploadCostumer(
                                 name, pLastName, mLastName, curp,
                                 bDate, gender, vulSituation

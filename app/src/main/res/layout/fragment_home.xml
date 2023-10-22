@@ -65,7 +65,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/actualizar_menu"
                 android:focusable="true"
-                android:src="@drawable/baseline_power_settings_new_24"
+                android:src="@drawable/baseline_local_dining_24"
                 app:fabSize="mini"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

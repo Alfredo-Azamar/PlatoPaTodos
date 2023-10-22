@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import mx.mr.platopatodos.View.MainActivity
 import mx.mr.platopatodos.databinding.ActivityLoginBinding
@@ -91,6 +92,18 @@ class LoginActivity : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.etUser.doOnTextChanged { text, start, before, count ->
+            if(text!!.length == 0) {
+                binding.tipUser.error = null
+            }
+        }
+
+        binding.etPassworrd.doOnTextChanged { text, start, before, count ->
+            if(text!!.length == 0) {
+                binding.tipPassword.error = null
             }
         }
     }
