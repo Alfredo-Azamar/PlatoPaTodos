@@ -15,8 +15,17 @@ import mx.mr.platopatodos.databinding.FragmentIncidentBinding
 import mx.mr.platopatodos.model.Prefs
 
 /**
- * Incident Frag View
+ * Fragment for reporting incidents and changing the dining status.
+ *
+ * This fragment allows users to report incidents and change the dining status.
+ *
+ * @constructor Creates a new instance of [IncidentFrag].
+ * @property binding The data binding object for the fragment layout.
+ * @property viewModel The ViewModel responsible for managing incidents and dining status.
+ * @property prefs The shared preferences object for storing user preferences.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class IncidentFrag : Fragment() {
@@ -26,6 +35,18 @@ class IncidentFrag : Fragment() {
     private val viewModel: IncidentVM by viewModels()
     private lateinit var prefs: Prefs
 
+    /**
+     * Creates and inflates the fragment's view.
+     *
+     * This function is called when the fragment is created and is responsible for inflating the
+     * layout defined in the `FragmentIncidentBinding`, initializing preferences, and returning the
+     * root view.
+     *
+     * @param inflater The LayoutInflater used to inflate the layout.
+     * @param container The parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState The saved instance state, if any.
+     * @return The root view of the fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,12 +56,28 @@ class IncidentFrag : Fragment() {
         return binding.root
     }
 
+    /**
+     * Called when the fragment's view has been created and can be accessed.
+     *
+     * In this function, we set up the behavior of the "Subir reporte" button and the "El comedor está"
+     * switch, as well as handle the initial display of the dining status.
+     *
+     * @param view The root view of the fragment.
+     * @param savedInstanceState The saved instance state, if any.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initializes incidents report and change status functions
         insertIncident()
         changeStatus()
     }
 
+    /**
+     * Handles the onResume lifecycle event.
+     *
+     * This method sets the text and state of the "Status" switch based on the dining status.
+     */
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
@@ -52,6 +89,12 @@ class IncidentFrag : Fragment() {
         }
     }
 
+    /**
+     * Inserts a new incident report.
+     *
+     * This function is called when the "Subir reporte" button is clicked. It collects user input
+     * for the incident report and sends it to the ViewModel for processing.
+     */
     private fun insertIncident() {
         binding.btnUploadReport.setOnClickListener {
 
@@ -69,12 +112,17 @@ class IncidentFrag : Fragment() {
         }
     }
 
+    /**
+     * Handles the change of dining status.
+     *
+     * This function is triggered when the "El comedor está" switch is toggled. It allows users
+     * to change the dining status between "Abierto" and "Cerrado" with a confirmation dialog.
+     */
     @SuppressLint("SetTextI18n")
     private fun changeStatus() {
         binding.swClosure.setOnClickListener {
             val diningName = prefs.getLocation()
             if (prefs.getStatus()) {
-//                binding.swClosure.isChecked = prefs.getStatus()
                 val alert = AlertDialog.Builder(requireActivity())
                     .setTitle("A V I S O")
                     .setMessage("¿Desea cambiar el estado del comedor?")
@@ -91,7 +139,6 @@ class IncidentFrag : Fragment() {
                 alert.show()
             } else {
                 if (prefs.getUpMenu()){
-//                    binding.swClosure.isChecked = prefs.getStatus()
                     binding.swClosure.text = "El comedor está: Abierto"
                     viewModel.updateDinStatus(diningName, "Abierto")
                     prefs.saveStautsCV(true)
@@ -100,5 +147,4 @@ class IncidentFrag : Fragment() {
             }
         }
     }
-
 }

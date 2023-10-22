@@ -13,8 +13,16 @@ import retrofit2.Response
 import retrofit2.Callback
 
 /**
- * Registro ViewModel
+ * ViewModel for registration functionality.
+ * This ViewModel manages customer registration and vulnerability condition data.
+ *
+ * @constructor Creates a new instance of [RegistroVM].
+ * @property apiCall Retrofit service for API calls.
+ * @property vulCondList MutableLiveData for storing the list of vulnerability conditions.
+ * @property customerToken MutableLiveData for storing the customer token after registration.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 
@@ -24,6 +32,18 @@ class RegistroVM : ViewModel() {
     val vulCondList = MutableLiveData<List<vulCondItem>>()
     var customerToken = MutableLiveData<String>()
 
+    /**
+     * Uploads customer information to the main database.
+     *
+     * @param name The customer's name.
+     * @param p_lastName The customer's primary last name.
+     * @param m_lastName The customer's secondary last name.
+     * @param curp The CURP (Unique Population Registry Code) of the customer.
+     * @param bDate The customer's birth year.
+     * @param gender The customer's gender.
+     * @param vulSituation An array of selected vulnerability conditions.
+     * @param callback A callback function that is called after the upload operation is completed.
+     */
     fun uploadCostumer(
         name: String, p_lastName: String, m_lastName: String,
         curp: String, bDate: Int, gender: String,
@@ -54,6 +74,9 @@ class RegistroVM : ViewModel() {
         })
     }
 
+    /**
+     * Retrieves vulnerability conditions from the API and updates [vulCondList].
+     */
     fun getVulSituations() {
         val call = apiCall.getVulSituations()
         call.enqueue(object: Callback<vulCondRes> {

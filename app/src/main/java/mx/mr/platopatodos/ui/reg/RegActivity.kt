@@ -15,24 +15,42 @@ import mx.mr.platopatodos.model.responses.vulCondItem
 import mx.mr.platopatodos.model.vulCondAdapter
 
 /**
- * Registro View
+ * Registration view for collecting customer information.
+ *
+ * This Activity allow users to enter customer details, scan CURP QR codes, select
+ * vulnerability condition and upload those data to the server.
+ *
+ * @constructor Creates a new instance of [RegActivity].
+ * @property viewModel The ViewModel responsible for managing registration data.
+ * @property binding The ViewBinding instance for this activity.
+ * @property adapter The adapter for vulnerability conditions.
+ * @property minDate The minimum birth date allowed for customers.
+ * @property maxDate The maximum birth date allowed for customers.
+ *
  * @author Héctor González Sánchez
  * @author Alfredo Azamar López
  */
 
 class RegActivity : AppCompatActivity() {
 
-    // Binding, ViewModel & Adaptator
+    // Binding, ViewModel & Adapter
     private val viewModel: RegistroVM by viewModels()
     private lateinit var binding: ActivityRegBinding
     private var adapter: vulCondAdapter? = null
+    private val minDate = 1920
+    private val maxDate = 2023
 
+    /**
+     * Called when the activity is created. Initializes the UI and sets up click listeners.
+     *
+     * @param savedInstanceState The saved instance state, if any.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Adaptador vacío
+        // Initialize an empty adapter
         val arrVulCond = listOf<vulCondItem>()
         adapter = vulCondAdapter(this, arrVulCond.toTypedArray())
         binding.rvVulSituations.adapter = adapter
@@ -43,11 +61,17 @@ class RegActivity : AppCompatActivity() {
         getHelp()
     }
 
+    /**
+     * Called when the activity is started. Fetches vulnerability conditions.
+     */
     override fun onStart() {
         super.onStart()
         viewModel.getVulSituations()
     }
 
+    /**
+     * Fetches and displays vulnerability conditions in a grid layout.
+     */
     private fun getVulSituations() {
         val layout = GridLayoutManager(this, 2)
         binding.rvVulSituations.layoutManager = layout
@@ -57,7 +81,6 @@ class RegActivity : AppCompatActivity() {
             adapter = vulCondAdapter(this, arrVulCond)
             binding.rvVulSituations.adapter = adapter
 
-            // Nuevo a partir de aquí
             adapter?.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
                 override fun onChanged() {
                     super.onChanged()
@@ -68,10 +91,10 @@ class RegActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Uploads customer information to the main database after validating user input.
+     */
     private fun uploadCustomer() {
-
-        val minDate = 1920
-        val maxDate = 2023
 
         binding.btnUploadCostumer.setOnClickListener {
 
@@ -120,11 +143,19 @@ class RegActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gets the selected vulnerability conditions from the adapter.
+     *
+     * @return An array of selected vulnerability conditions.
+     */
     private fun getCond(): Array<String> {
         val selectedCondition = adapter?.selectedConditions
         return selectedCondition!!.toTypedArray()
     }
 
+    /**
+     * Initiates QR code scanning and populates customer information fields from the scanned data.
+     */
     private fun scanQR() {
         binding.btnRegQR.setOnClickListener {
             QrManager.startQrCodeScanner(this, { result ->
@@ -169,6 +200,9 @@ class RegActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Opens a web page for help and information about CURP.
+     */
     private fun getHelp() {
         binding.tvHelpReg.setOnClickListener {
             val url = "https://www.gob.mx/curp/"

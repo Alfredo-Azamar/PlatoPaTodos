@@ -12,8 +12,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * Incident Frag ViewModel
+ * ViewModel for managing incidents and dining status.
+ *
+ * This ViewModel is responsible for managing incidents and the status of the dining location.
+ *
+ * @constructor Creates a new instance of [IncidentVM].
+ * @property apiCall The Retrofit API service for making network requests.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class IncidentVM : ViewModel() {
@@ -21,6 +28,13 @@ class IncidentVM : ViewModel() {
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
+    /**
+     * Inserts a new incident report.
+     *
+     * @param diningName The name of the dining location.
+     * @param issue The type of issue or incident.
+     * @param description The description of the incident.
+     */
     fun insertIncident(diningName: String, issue: String, description: String) {
 
         val date = MyDate()
@@ -44,10 +58,14 @@ class IncidentVM : ViewModel() {
         })
     }
 
+    /**
+     * Updates the dining status to the specified status.
+     *
+     * @param diningName The name of the dining location.
+     * @param diningStatus The new status of the dining location.
+     */
     fun updateDinStatus(diningName: String, diningStatus: String) {
 
-        // CAMBIAR ESTÁ VARIABLE, NO TIENE QUE SER CERRADO SIEMPRE
-        //val diningStatus = "Cerrado"
         val requestBody = ChgStatusDining(diningName, diningStatus)
 
         apiCall.updateDinStatus(requestBody).enqueue(object: Callback<StringResponse> {

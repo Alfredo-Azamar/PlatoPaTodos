@@ -15,16 +15,32 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * Menu ViewModel
+ * ViewModel for managing dining menu and status.
+ *
+ * This ViewModel is responsible for managing the dining menu updates and the status of the dining location.
+ *
+ * @constructor Creates a new instance of [MenuVM].
+ * @property apiCall The Retrofit API service for making network requests.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
-
 
 class MenuVM : ViewModel() {
 
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
+    /**
+     * Uploads the dining menu to the main database.
+     *
+     * @param diningName The name of the dining location.
+     * @param soup The description of the soup.
+     * @param mainCourse The description of the main course.
+     * @param carbs The description of the carbs.
+     * @param water The description of the water.
+     * @param beansSauce The description of the beans sauce.
+     */
     fun uploadMenu(diningName: String, soup: String, mainCourse: String,
                    carbs: String, water: String, beansSauce: String) {
 
@@ -48,6 +64,11 @@ class MenuVM : ViewModel() {
         })
     }
 
+    /**
+     * Updates the dining status to "Abierto" (Open).
+     *
+     * @param diningName The name of the dining location.
+     */
     fun updateDinStatus(diningName: String) {
 
         val diningStatus = "Abierto"

@@ -12,8 +12,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * Login ViewModel
+ * ViewModel for user login and authentication.
+ *
+ * This ViewModel is responsible for user login and authentication, handling the API requests and navigation.
+ *
+ * @constructor Creates a new instance of [LoginVM].
+ * @property apiCall The Retrofit API service for making network requests.
+ * @property _navigateToNewAct A private MutableLiveData for navigating to a new activity.
+ * @property navigateToNewAct A LiveData to observe navigation events.
+ * @property _currentLocation A private MutableLiveData for storing the current user location.
+ * @property currentLocation A LiveData to observe the current location.
+ * @property _responseAPI A private MutableLiveData for observing API response status.
+ * @property responseAPI A LiveData to observe the API response status.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class LoginVM : ViewModel() {
@@ -27,13 +40,19 @@ class LoginVM : ViewModel() {
         get() = _currentLocation
 
     private val _responseAPI = MutableLiveData<Boolean>()
-
     val responseAPI: LiveData<Boolean>
         get() = _responseAPI
 
     // Retrofit Object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
+    /**
+     * Attempt to log in the user with the provided username and password.
+     *
+     * @param username The user's username.
+     * @param password The user's password.
+     * @param callback A callback function to handle the result of the login attempt.
+     */
     fun userLogin(username: String, password: String, callback: (Boolean) -> Unit) {
         val requestBody = LoginReq(username, password)
 
@@ -62,9 +81,10 @@ class LoginVM : ViewModel() {
         })
     }
 
+    /**
+     * Handle the completion of navigation to a new activity.
+     */
     fun onNavigationHandled() {
         _navigateToNewAct.postValue(false)
     }
-
-    //TODO: Possible logout delete prefs
 }

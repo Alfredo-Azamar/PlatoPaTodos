@@ -10,6 +10,20 @@ import mx.mr.platopatodos.View.MainActivity
 import mx.mr.platopatodos.databinding.ActivityLoginBinding
 import mx.mr.platopatodos.model.Prefs
 
+/**
+ * Login Activity for user authentication.
+ *
+ * This activity allows users to log in by entering their username and password.
+ *
+ * @constructor Creates a new instance of [LoginActivity].
+ * @property viewModel The ViewModel responsible for user authentication and UI interactions.
+ * @property binding The ViewBinding instance for this activity.
+ * @property prefs The preferences manager for storing user settings.
+ *
+ * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
+ */
+
 class LoginActivity : AppCompatActivity() {
 
     // Bindind & ViewModel
@@ -17,6 +31,11 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var prefs: Prefs
 
+    /**
+     * Called when the activity is created. Initializes the UI, checks for saved login, and sets up click listeners.
+     *
+     * @param savedInstanceState The saved instance state, if any.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -28,6 +47,9 @@ class LoginActivity : AppCompatActivity() {
        setupListeners()
     }
 
+    /**
+     * Set up listeners for LiveData updates and navigation.
+     */
     private fun setupListeners() {
         viewModel.navigateToNewAct.observe(this, Observer { shouldNavigate ->
             if(shouldNavigate) {
@@ -51,6 +73,9 @@ class LoginActivity : AppCompatActivity() {
 //        }
     }
 
+    /**
+     * Perform user login when the login button is clicked.
+     */
     private fun login() {
         binding.btnLogin.setOnClickListener {
 
@@ -70,6 +95,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Check for saved login and navigate to the main activity if logged in.
+     */
     private fun getLogkey() {
         if(prefs.getLogin()) {
             val intent = Intent(this, MainActivity::class.java)

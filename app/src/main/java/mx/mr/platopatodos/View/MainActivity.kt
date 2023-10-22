@@ -10,10 +10,15 @@ import mx.mr.platopatodos.databinding.ActivityMainBinding
 import mx.mr.platopatodos.model.Prefs
 
 /**
- * Main Activity con un fragmentContainerView para desplegar los fragmentos
- * correspondientes
+ * Main Activity with fragmentContainerView to display corresponding fragments.
+ * This is the entry point of the application.
+ *
+ * @property binding View binding for the main activity layout.
+ * @property navigationController Navigation controller for managing fragment navigation.
+ * @property prefs An instance of the Preferences class for managing application preferences.
  *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class MainActivity : AppCompatActivity() {
@@ -24,16 +29,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Inflating the layout for this Activity
         binding = ActivityMainBinding.inflate(layoutInflater)
         prefs = Prefs(applicationContext)
         setContentView(binding.root)
+
+        // Initialize the User Interface
         initUI()
     }
 
+    /**
+     * Initializes the UI components of the activity
+     */
     private fun initUI() {
         val navigationHost = supportFragmentManager.findFragmentById(R.id.fc_main) as NavHostFragment
-        // En esta madre estoy seteando el click en falso (hay que ver si se setea en otro lado)
-        //prefs.saveStautsCV(false)
         navigationController = navigationHost.navController
         binding.bottomNavView.setupWithNavController(navigationController)
     }

@@ -11,13 +11,30 @@ import retrofit2.Response
 
 /**
  * Home Frag ViewModel
+ *
+ * This ViewModel class is responsible for managing the logic related to the HomeFragment.
+ * It primarily handles the update of the dining status to "Cerrado" (closed) and communicates with
+ * the server to reflect this change.
+ *
+ * @property apiCall The Retrofit service object for making API calls.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class HomeVM : ViewModel() {
 
+    // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
+    /**
+     * Updates the dining status to "Cerrado" (closed) on the server.
+     *
+     * This function sends a request to the server to change the dining status to "Cerrado"
+     * (closed). It handles the success and failure cases, printing messages accordingly.
+     *
+     * @param diningName The name of the dining location to be updated.
+     */
     fun updateDinStatus(diningName: String){
         val diningStatus = "Cerrado"
         val requestBody = ChgStatusDining(diningName, diningStatus)

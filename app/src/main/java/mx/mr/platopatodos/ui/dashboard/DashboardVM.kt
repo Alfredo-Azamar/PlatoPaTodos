@@ -17,14 +17,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 /**
  * Dashboard Frag ViewModel
+ *
+ * This ViewModel is responsible for providing data related to the dashboard, including information
+ * about the dining location's performance, the number of diners, completed menus, pending menus, etc.
+ *
+ * @property dashBDPt1 LiveData representing a dashboard data point.
+ * @property dashBDPt2 LiveData representing a dashboard data point.
+ * @property dashBDPt3 LiveData representing a dashboard data point.
+ * @property dashBDPt4 LiveData representing a dashboard data point.
+ *
  * @author Héctor González Sánchez
+ * @author Alfredo Azamar López
  */
 
 class DashboardVM() : ViewModel() {
 
+    // LiveData to hold dashboard information
     val dashBDPt1 = MutableLiveData<String?>()
     val dashBDPt2 = MutableLiveData<String?>()
     val dashBDPt3 = MutableLiveData<String?>()
@@ -33,10 +43,13 @@ class DashboardVM() : ViewModel() {
     // Retrofit object
     private val apiCall: ListaServiciosAPI = RetrofitManager.apiService
 
-
+    /**
+     * Fetches the dashboard information for the given dining location and date.
+     *
+     * @param diningName The name of the dining location.
+     */
     fun getDashboardInfo(diningName: String) {
         val date = MyDate().getCurrentDate()
-        //val date = "2023-10-18" // Change
 
         apiCall.getDashboardInfo(diningName, date).enqueue(object: Callback<DashboardRes> {
 
@@ -69,6 +82,11 @@ class DashboardVM() : ViewModel() {
         })
     }
 
+    /**
+     * Fetches detailed dashboard information for the given dining location and date.
+     *
+     * @param diningName The name of the dining location.
+     */
     fun getDashboardCompInfo(diningName: String) {
 
 //        val date = MyDate().getCurrentDate()
@@ -101,7 +119,6 @@ class DashboardVM() : ViewModel() {
             override fun onFailure(call: Call<DashboardCompRes>, t: Throwable) {
                 println("ERROR: ${t.localizedMessage}")
             }
-
         })
     }
 }
